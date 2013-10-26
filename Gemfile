@@ -26,7 +26,7 @@ end
 
 gem 'jquery-rails'
 
-gem 'backbone-on-rails'
+#gem 'backbone-on-rails'
 
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass', '2.3.2.0'
