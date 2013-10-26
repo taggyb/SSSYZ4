@@ -1,0 +1,6 @@
+<div class="page-header row-fluid">
+	<h1>Rotten Cactus Movies</h1>
+</div>
+
+<div id="movie-list">
+</div>

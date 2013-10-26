@@ -1,0 +1,26 @@
+<% if this.movies.length: %>
+<p style="text-align: right;"><a class="btn btn-primary" id="new_movie">Add new movie</a><br /><br /></p>
+        <div class="row movies">
+                <% for movie in this.movies: %>
+                <div class="span3">
+                        <% if movie.get('title').length > '15': %>
+                                <h3 class="movie-title"><a class="moviedetail" data-name="<%= movie.get('id') %>"><%= movie.get('title').substring(0,14) + '...' %></a></h3>
+                        <% else: %>
+                                <h3 class="movie-title"><a class="moviedetail" data-name="<%= movie.get('id') %>"><%= movie.get('title') %></a></h3>
+                        <% end %>
+                        <img src="<%= movie.get('img_url') %>">
+                        <p><% if movie.get('avg_score') > '60': %>
+                                <icon class="icon-ok"></icon>
+                        <% else: %>
+                                <icon class="icon-remove"></icon>
+                        <% end %> Score: <%= Math.round(movie.get('avg_score')) %></p>
+                </div>
+                <% end %>
+        </div>
+
+<% else: %>
+        <div class="loading-container">
+                <i class="icon-spinner icon-spin"></i>
+                <h5>Loading movies<br /> Please wait...</h5>
+        </div>
+<% end %>

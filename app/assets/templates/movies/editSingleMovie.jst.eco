@@ -1,0 +1,33 @@
+<div class="container">
+        <div class="page-header">
+                <h1>Update Movie</h1>
+        </div>
+ 
+        <form id="#update-movie-form" method="POST">
+                <div class="control-group">
+                        <label class="control-label" for="movie_title">Title</label>
+                        <div class="controls">
+                                <input class="text_field" id="movie_title" name="movie[title]" size="30" type="text" required="true" value="<%= @title %>"/>
+                        </div>
+                </div>
+ 
+                <div class="control-group">
+                        <label class="control-label" for="movie_summary">Summary</label>
+                        <div class="controls">
+                                <input class="text_field" id="movie_summary" name="movie[summary]" size="30" type="text" required="true" value="<%= @summary %>"/>
+                        </div>
+                </div>
+ 
+                <div class="control-group">
+                        <label class="control-label" for="movie_img">Img</label>
+                        <div class="controls">
+                                <input type="file" id="movie_img" required="true" name="movie[img]">
+                        </div>
+                </div>
+ 
+                <div class="form-actions">             
+                        <a class="btn btn-primary" id="update">Update Movie</a>
+                        <a class="btn" id="cancel">Cancel</a>
+                </div>
+        </form>
+</div>
