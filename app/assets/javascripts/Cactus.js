@@ -7,6 +7,7 @@
   // Save a reference to the global object (`window` in the browser, `exports`
   // on the server).
   var root = this;
+  var Cactus;
   // Save the previous value of the `Cactus` variable, so that it can be
   // restored later on, if `noConflict` is used.
   var previousCactus = root.Cactus;
@@ -19,7 +20,7 @@
 
   // The top-level namespace. All public Cactus classes and modules will
   // be attached to this. Exported for both the browser and the server.
-  var Cactus;
+ 
   if (typeof exports !== 'undefined') {
     Cactus = exports;
   } else {
@@ -40,7 +41,7 @@
   // Runs Cactus.js in *noConflict* mode, returning the `Cactus` variable
   // to its previous owner. Returns a reference to this Cactus object.
   Cactus.noConflict = function() {
-    root.Cactus = previousBackbone;
+    root.Cactus = previousCactus;
     return this;
   };
 
@@ -98,9 +99,9 @@
         return this;
       }
 
-      this._events[name] = _.reject(this._events[name] function(event){ 
-      	event.callback == callback;
-      })
+      this._events[name] = _.reject(this._events[name], function(event){ 
+      	return event.callback = callback;
+      });
 
       return this;
     },
@@ -138,10 +139,7 @@
 
   _.extend(Cactus, Events);
 
-
-var Cactus = Cactus || {};
-
-Cactus.Model = function(attributes, options) {
+var Model = Cactus.Model = function(attributes, options) {
 	var newAttributes = attributes || {};
 	if (!options) {
 		options = {};
@@ -333,7 +331,7 @@ var addOptions = {add: true, remove: false};
    model: Model, 
    
    //Initialize is an empty function by default.
-   initialize: function(){}
+   initialize: function(){},
    
    //The JSON representation of a Collection is an array of the models' attributes.
    toJSON: function(options) {
@@ -376,6 +374,7 @@ var addOptions = {add: true, remove: false};
     	model.trigger('remove', model, this, options);
 		}
     }
+  }
     else{
     delete this._byId[models.id];
     delete this._byId[models.cid];
@@ -416,7 +415,7 @@ var addOptions = {add: true, remove: false};
  */
     fetch: function(options) {
     if(options) options = _.clone(options);
-    else options = {}:
+    else options = {};
       if (options.parse === void 0) options.parse = true;
       var success = options.success;
       var collection = this;
@@ -434,7 +433,7 @@ var addOptions = {add: true, remove: false};
     
      create: function(model, options) {
     if(options) options = _.clone(options);
-    else options = {}:
+    else options = {};
     	model = this._prepareModel(model, options);
       if (!model) return false;
       if (!options.wait) this.add(model, options);
@@ -510,6 +509,7 @@ var addOptions = {add: true, remove: false};
       return _[method](this.models, iterator, context);
     };
   });
+
 var View = Cactus.View = function(options) {
     if(!options){
     	options = {};
@@ -957,4 +957,38 @@ _extractParameters: function(route, fragment) {
 
   });
 
+var extend = function(properties) {
+
+var parent = this;
+var child;
+
+//setting up a child
+if (properties && _.has(properties, 'constructor')){ 
+  child = properties.constructor;
+  }
+  
+//no prototype supplied   
+  else{
+  child = function(){ 
+    return parent.apply(this, arguments);
+    }; //apply chains the constructors for an object
 }
+
+_.extend(child, parent); //puts all parent properties in to child
+
+var Surrogate = function(){ this.constructor = child; };
+    Surrogate.prototype = parent.prototype;
+    child.prototype = new Surrogate;
+
+if(properties) //if child properties are given
+_.extend(chid.prototype, properties);
+
+
+child.__super__ = parent.prototype;
+
+return child;
+};
+
+Model.extend = Collection.extend = Router.extend = View.extend = History.extend = extend;
+
+})

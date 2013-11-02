@@ -1,4 +1,4 @@
-Cactus2.Views.SingleMovie = Cacus.View.extend({
+Cactus2.Views.SingleMovie = Cactus.View.extend({
 	template: JST['movies/singlemovie'],
 
 	initialize: function() {
