@@ -1,44 +1,48 @@
 Cactus2.Views.SingleMovie = Cactus.View.extend({
-	template: JST['movies/singlemovie'],
+        template: JST['movies/singlemovie'],
 
-	initialize: function() {
-		this.collection = this.options.collection;
-		this.id = this.options.mid;
-		this.router = this.options.router;
-		this.reviews = this.options.reviews;
-		this.reviewid = this.reviews.id;
-		this.collection.on('all', this.render, this);
-		this.reviews.on('reset', this.render, this);
-	},
+        initialize: function() {
+                this.model = this.options.model;
 
-	render: function() {
-		this.$el.html(this.template({movies: this.collection.models, mid: this.id, reviews: this.reviews.models}));
-		this.delegateEvents();
-                return this;
-	},
+                this.model.on('change', this.render, this);
+                this.model.fetch();
+                this.mid = this.options.mid;
+                this.router = this.options.router
 
-	events: {
-		"click .main"		: "backToIndex",
-                "click #update_movie"	: "updateMovie",
-                "click #delete_movie"	: "deleteMovie",
-                "click #submit_review"	: "submitReview",
-                "click #delete_review"	: "deleteReview"
+                this.reviews = new Cactus2.Collections.Reviews([],{id:this.mid});
+                this.reviews.on('reset change', this.render, this);
+                this.reviews.fetch({reset:true});
         },
 
-	updateMovie: function() {
-		routerHome.navigate("/movies/"+this.id+"/edit", { trigger: true });
-                return false;
-	},
+        render: function() {
+                console.log(this.model.attributes);
+                this.$el.html(this.template({movie: this.model.attributes, mid: this.mid, reviews: this.reviews.models}));
+                //this.delegateEvents();
+                return this;
+        },
 
-	deleteMovie: function(e) {
-		e.preventDefault();
-		if (typeof gon == 'undefined'){
-			alert('Please login to delete this movie!');
-			return false;
+        events: {
+                "click .main"           : "backToIndex",
+                "click #update_movie"   : "updateMovie",
+                "click #delete_movie"   : "deleteMovie",
+                "click #submit_review"  : "submitReview",
+                "click #delete_review"  : "deleteReview"
+        },
+
+        updateMovie: function() {
+                routerHome.navigate("/movies/"+this.mid+"/edit", { trigger: true });
+                return false;
+        },
+
+        deleteMovie: function(e) {
+                e.preventDefault();
+                if (typeof gon == 'undefined'){
+                        alert('Please login to delete this movie!');
+                        return false;
                 }
 
                 $.ajax({
-                        url: 'http://cs3213.herokuapp.com/movies/'+this.id+'.json',
+                        url: 'http://cs3213.herokuapp.com/movies/'+this.mid+'.json',
                         dataType:'json',
                         data: {        
                                 access_token: gon.token
@@ -50,62 +54,83 @@ Cactus2.Views.SingleMovie = Cactus.View.extend({
                         success: function(e){
                                 alert("Movie deleted successfully."); 
                                 routerHome.navigate("", { trigger: true });
-			},
-		});
-	},
+                        },
+                });
+        },
 
-	deleteReview: function(e) {
-		e.preventDefault();
-		if (typeof gon == 'undefined'){
-			alert('Please login to delete this review!');
-			return false;
-		}
+        deleteReview: function(e) {
+                e.preventDefault();
+                var current = this;
+                var review_id = $(e.target).parent().attr('id');
 
-		$.ajax({
-                        
-                        url: 'http://cs3213.herokuapp.com/movies/'+this.id+'/reviews/'+$(e.target).parent().attr('id')+'.json',
+                if (typeof gon == 'undefined'){
+                        alert('Please login to delete this review!');
+                        return false;
+                }
+                
+                $.ajax({
+                        url: 'http://cs3213.herokuapp.com/movies/'+this.mid+'/reviews/'+review_id+'.json',
                         dataType:'json',
                         data: {        
                                 access_token: gon.token
                         },
                         method: "DELETE",
                         error: function(e){
-                                alert("You are not authorised to delete this review");
+                                alert("Something wrong happened when delete this review");
                         },
                         success: function(e){
-                                alert("review deleted successfully."); 
+                                alert("review deleted successfully.");
+                                //current.destroyReview();
+                                review_model = current.reviews.get(review_id);
+                                current.reviews.remove(review_model);
+
+                                //routerHome.navigate("movies/" + current.mid, { trigger: true });
+                                //current.destroyReview(); 
                                 routerHome.navigate("", { trigger: true });
                         },
                 });
-	},
+        },
 
-	submitReview: function(e) {
+        submitReview: function(e) {
                 e.preventDefault();
                 if (typeof gon == 'undefined'){
                         alert('You are not authorised to add a review. Please sign in.');
- 
                         return false;
                 }
-               
+                var current = this;
                 $(e.target).closest('form').ajaxSubmit({
-                        url: 'http://cs3213.herokuapp.com/movies/'+this.id+'/reviews.json',
+                        url: 'http://cs3213.herokuapp.com/movies/'+this.mid+'/reviews.json',
                         dataType:'json',
                         data: {        
                                 access_token: gon.token
                         },
                         method: "POST",
                         error: function(e){
-                                alert("You are not authorised to add a review Please sign in.");
+                                alert("Something wrong happened. Try again :-(");
+                                return false;
                         },
                         success: function(e){
-                                alert("Review has been successfully added."); 
-                                routerHome.navigate("", { trigger: true });
-                        },
+                                 alert("review added successfully.");
+                                current.destroyReview();
+                                routerHome.navigate("", { trigger: true });      
+                        }                  
                 });
         },
 
 
-	backToIndex: function() {
-		routerHome.navigate("", { trigger: true });
-	}
+        backToIndex: function() {
+                routerHome.navigate("", { trigger: true });
+        },
+
+        destroyReview: function() {
+                //COMPLETELY UNBIND THE VIEW
+                this.undelegateEvents();
+
+                this.$el.removeData().unbind(); 
+
+                //Remove view from DOM
+                this.remove();  
+                Backbone.View.prototype.remove.call(this);
+
+        }
 })

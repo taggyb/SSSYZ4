@@ -2,12 +2,12 @@ Cactus2.Views.EditSingleMovie = Cactus.View.extend({
 	template: JST['movies/editSingleMovie'],
 
 
-    render: funtion() {
-        console.log("hahaha");
-        console.log(this.model.toJSON());
-        console.log("hehehe");
+    render: function() {
+        //console.log("hahaha");
+        //console.log(this.model.toJSON());
+        //console.log("hehehe");
         this.$el.html(this.template(this.model.toJSON()));
-        console.log("lololo");
+        //console.log("lololo");
         //this.$el.html(this.template());
         this.delegateEvents();
         return this;
@@ -17,10 +17,10 @@ Cactus2.Views.EditSingleMovie = Cactus.View.extend({
         _.bindAll(this,"render");
         //alert("id is"+this.options.mid);
         console.log(this.model);
-        this.collection = this.options.collection;
-        this.id = this.options.mid;
-        this.router = this.options.router;
-        this.reviews = this.options.reviews;
+        //this.collection = this.options.collection;
+        //this.id = this.options.mid;
+        //this.router = this.options.router;
+        //this.reviews = this.options.reviews;
     },
 
 

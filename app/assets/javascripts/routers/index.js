@@ -17,7 +17,6 @@ Cactus2.Routers.Index=Cactus.Router.extend({
                 } else {
                         page = parseInt(page, 10);
                 }
-
                 this.movies = new Cactus2.Collections.Movies([],{
                         url: "//cs3213.herokuapp.com/movies.json?page=" + page
                 });
@@ -43,22 +42,15 @@ Cactus2.Routers.Index=Cactus.Router.extend({
         },
  
         displaySingleMovie: function(id) {
-                this.amovie = new Cactus2.Collections.aMovie([],{id:id});
-                this.amovie.fetch();
-                this.amovie.models;
- 
-                this.reviews = new Cactus2.Collections.Reviews([],{id:id});
-                this.reviews.fetch({reset: true});
-                
-                this.reviews.models;
+                this.amovie = new Cactus2.Models.Movie({id:id});
+              
                 var view = new Cactus2.Views.SingleMovie({
-                        el: '#wrapper',
-                        collection: this.amovie,
+                        model: this.amovie,
                         mid: id,
-                        reviews: this.reviews,
                         router: this
                 });
-                view.render();
+
+                $("#wrapper").html(view.render().el);
         },
  
         editSingleMovie: function(movieId) {
