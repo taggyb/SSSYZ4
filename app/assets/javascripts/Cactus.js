@@ -72,6 +72,7 @@
     // Bind an event to a `callback` function. Passing `"all"` will bind
     // the callback to all events fired.
     on: function(name, callback, context) {
+      alert("1");
       if (!eventsApi(this, 'on', name, [callback, context]) || !callback) return this;
       this._events || (this._events = {});
       var events = this._events[name] || (this._events[name] = []);
@@ -1361,21 +1362,14 @@
       this._hasPushState    = !!(this.options.pushState && this.history && this.history.pushState);
       var fragment          = this.getFragment();
       var docMode           = document.documentMode;
-      var oldIE             = (isExplorer.exec(navigator.userAgent.toLowerCase()) && (!docMode || docMode <= 7));
 
       // Normalize root to always include a leading and trailing slash.
       this.root = ('/' + this.root + '/').replace(rootStripper, '/');
-
-      if (oldIE && this._wantsHashChange) {
-        this.iframe = Cactus.$('<iframe src="javascript:0" tabindex="-1" />').hide().appendTo('body')[0].contentWindow;
-        this.navigate(fragment);
-      }
-
       // Depending on whether we're using pushState or hashes, and whether
       // 'onhashchange' is supported, determine how we check the URL state.
       if (this._hasPushState) {
         Cactus.$(window).on('popstate', this.checkUrl);
-      } else if (this._wantsHashChange && ('onhashchange' in window) && !oldIE) {
+      } else if (this._wantsHashChange && ('onhashchange' in window)) {
         Cactus.$(window).on('hashchange', this.checkUrl);
       } else if (this._wantsHashChange) {
         this._checkUrlInterval = setInterval(this.checkUrl, this.interval);
