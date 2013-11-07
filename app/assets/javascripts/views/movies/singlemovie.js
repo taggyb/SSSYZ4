@@ -1,13 +1,13 @@
 Cactus2.Views.SingleMovie = Cactus.View.extend({
         template: JST['movies/singlemovie'],
 
-        initialize: function() {
-                this.model = this.options.model;
+        initialize: function(options) {
+                this.model = options.model;
 
                 this.model.on('change', this.render, this);
                 this.model.fetch();
-                this.mid = this.options.mid;
-                this.router = this.options.router
+                this.mid = options.mid;
+                this.router = options.router
 
                 this.reviews = new Cactus2.Collections.Reviews([],{id:this.mid});
                 this.reviews.on('reset change', this.render, this);

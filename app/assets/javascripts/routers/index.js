@@ -42,10 +42,10 @@ Cactus2.Routers.Index=Cactus.Router.extend({
         },
  
         displaySingleMovie: function(id) {
-                this.amovie = new Cactus2.Models.Movie({id:id});
+                var amovie = new Cactus2.Models.Movie({id:id});
               
                 var view = new Cactus2.Views.SingleMovie({
-                        model: this.amovie,
+                        model: amovie,
                         mid: id,
                         router: this
                 });
