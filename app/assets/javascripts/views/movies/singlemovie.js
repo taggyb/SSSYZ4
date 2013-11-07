@@ -110,7 +110,7 @@ Cactus2.Views.SingleMovie = Cactus.View.extend({
                                 return false;
                         },
                         success: function(e){
-                                 alert("review added successfully.");
+                                alert("review added successfully.");
                                 current.destroyReview();
                                 routerHome.navigate("", { trigger: true });      
                         }                  
@@ -130,7 +130,6 @@ Cactus2.Views.SingleMovie = Cactus.View.extend({
 
                 //Remove view from DOM
                 this.remove();  
-                Backbone.View.prototype.remove.call(this);
-
+                Cactus.View.prototype.remove.call(this);
         }
 })
