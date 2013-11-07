@@ -68954,3 +68954,231 @@ Served asset /main.js - 304 Not Modified (0ms)
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-11-07 15:13:57 +0800
 Served asset /application.js - 304 Not Modified (2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-11-07 15:19:50 +0800
+Connecting to database specified by database.yml
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (25.7ms)
+Compiled views/movies/editSingleMovie.js  (0ms)  (pid 5630)
+Compiled application.js  (20ms)  (pid 5630)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 263ms (Views: 261.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /application.css - 304 Not Modified (14ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /twitter-bootstrap-static/bootstrap.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /twitter-bootstrap-static/fontawesome.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /custom.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /main.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /jquery.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/jquery.form.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /jquery.form.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /twitter/bootstrap/bootstrap-transition.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /twitter/bootstrap/bootstrap-alert.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /twitter/bootstrap/bootstrap-modal.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /twitter/bootstrap/bootstrap-dropdown.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /twitter/bootstrap/bootstrap-scrollspy.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /twitter/bootstrap/bootstrap-tab.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /twitter/bootstrap/bootstrap-tooltip.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /twitter/bootstrap/bootstrap-popover.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /twitter/bootstrap/bootstrap-button.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /twitter/bootstrap/bootstrap-collapse.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /twitter/bootstrap/bootstrap-carousel.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /twitter/bootstrap/bootstrap-typeahead.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:51 +0800
+Served asset /twitter/bootstrap/bootstrap-affix.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /twitter/bootstrap.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/underscore.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /underscore.js - 200 OK (1ms)
+
+
+Started GET "/assets/Cactus.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /Cactus.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/Cactus2.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /Cactus2.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/movies/displayAllMovies.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /movies/displayAllMovies.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/movies/editSingleMovie.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /movies/editSingleMovie.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/movies/index.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /movies/index.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/movies/newMovie.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /movies/newMovie.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/movies/singlemovie.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /movies/singlemovie.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/models/movie.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /models/movie.js - 200 OK (2ms)
+
+
+Started GET "/assets/models/review.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /models/review.js - 200 OK (2ms)
+
+
+Started GET "/assets/collections/movie.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /collections/movie.js - 200 OK (2ms)
+
+
+Started GET "/assets/collections/movies.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /collections/movies.js - 200 OK (1ms)
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /underscore-min.map - 404 Not Found (3ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (3.2.9) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.9) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.9) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.9) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  railties (3.2.9) lib/rails/engine.rb:479:in `call'
+  railties (3.2.9) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.9) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.6.1) lib/thin/connection.rb:82:in `block in pre_process'
+  thin (1.6.1) lib/thin/connection.rb:80:in `catch'
+  thin (1.6.1) lib/thin/connection.rb:80:in `pre_process'
+  thin (1.6.1) lib/thin/connection.rb:55:in `process'
+  thin (1.6.1) lib/thin/connection.rb:41:in `receive_data'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run'
+  thin (1.6.1) lib/thin/backends/base.rb:73:in `start'
+  thin (1.6.1) lib/thin/server.rb:162:in `start'
+  rack (1.4.5) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.5) lib/rack/server.rb:268:in `start'
+  railties (3.2.9) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.9) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.9) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.9) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /home/zhaoyue/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/assets/collections/reviews.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /collections/reviews.js - 200 OK (2ms)
+
+
+Started GET "/assets/views/movies/displayAllMovies.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /views/movies/displayAllMovies.js - 200 OK (2ms)
+
+
+Started GET "/assets/views/movies/editSingleMovie.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /views/movies/editSingleMovie.js - 200 OK (2ms)
+
+
+Started GET "/assets/views/movies/index.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /views/movies/index.js - 200 OK (2ms)
+
+
+Started GET "/assets/views/movies/newMovie.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /views/movies/newMovie.js - 200 OK (2ms)
+
+
+Started GET "/assets/views/movies/singlemovie.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /views/movies/singlemovie.js - 200 OK (1ms)
+
+
+Started GET "/assets/routers/index.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /routers/index.js - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /bootstrap.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /main.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-11-07 15:19:52 +0800
+Served asset /application.js - 304 Not Modified (38ms)
