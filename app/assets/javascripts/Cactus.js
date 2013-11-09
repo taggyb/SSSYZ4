@@ -105,28 +105,32 @@
   // --------------
   var Model = Cactus.Model = function(attributes, options) {
     var attrs = attributes || {};
-    options || (options = {});
-    this.cid = _.uniqueId('c');
+    if (!options) {
+        options = {};
+    }
     this.attributes = {};
-    if (options.collection) this.collection = options.collection;
-    if (options.parse) attrs = this.parse(attrs, options) || {};
-    attrs = _.defaults({}, attrs, _.result(this, 'defaults'));
+    this.cid = _.uniqueId('cactus');
+    if (options.collection) {
+        this.collection = options.collection;
+    }
+    if (options.parse) {
+        attrs = this.parse(attrs, options) || {};
+    }
+    var defaults = _.result(this, 'defaults');
+    if (defaults) {
+        attrs = _.defaults({}, attrs, defaults);
+    }
     this.set(attrs, options);
-    this.changed = {};
+    //this.changed = {};
     this.initialize.apply(this, arguments);
   };
 
   // Attach all inheritable methods to the Model prototype.
   _.extend(Model.prototype, Events, {
-
-    changed: null,
-
+    //changed: null,
     validationError: null,
-
     idAttribute: 'id',
-
-    initialize: function(){
-    },
+    initialize: function(){},
 
     // Return a copy of the model's `attributes` object.
     toJSON: function(options) {
@@ -140,8 +144,8 @@
     },
 
     // Get the value of an attribute.
-    get: function(attr) {
-      return this.attributes[attr];
+    get: function(attribute) {
+      return this.attributes[attribute];
     },
 
     // Set a hash of model attributes on the object, firing `"change"`. This is
@@ -149,7 +153,9 @@
     // anyone who needs to know about the change in state. The heart of the beast.
     set: function(key, val, options) {
       var attr, attrs, unset, changes, silent, changing, prev, current;
-      if (key == null) return this;
+      if (key == null) {
+	return this;
+      }
 
       // Handle both `"key", value` and `{key: value}` -style arguments.
       if (typeof key === 'object') {
@@ -159,10 +165,14 @@
         (attrs = {})[key] = val;
       }
 
-      options || (options = {});
-
+      if (!options) {
+        options = {};
+      }
+  
       // Run validation.
-      if (!this._validate(attrs, options)) return false;
+      if (!this._validate(attrs, options)) {
+	return false;
+      }
 
       // Extract attributes and options.
       unset           = options.unset;
@@ -178,28 +188,40 @@
       current = this.attributes, prev = this._previousAttributes;
 
       // Check for changes of `id`.
-      if (this.idAttribute in attrs) this.id = attrs[this.idAttribute];
+      if (this.idAttribute in attrs) {
+	this.id = attrs[this.idAttribute];
+      }
 
       // For each `set` attribute, update or delete the current value.
       for (attr in attrs) {
         val = attrs[attr];
-        if (!_.isEqual(current[attr], val)) changes.push(attr);
+        if (!_.isEqual(current[attr], val)) {
+	  changes.push(attr);
+	}
         if (!_.isEqual(prev[attr], val)) {
           this.changed[attr] = val;
         } else {
           delete this.changed[attr];
         }
-        unset ? delete current[attr] : current[attr] = val;
+	if (unset) {
+	  delete current[attr];
+	} else {
+	  current[attr] = val;
+	}
       }
 
       if (!silent) {
-        if (changes.length) this._pending = true;
+        if (changes.length) {
+	  this._pending = true;
+	}
         for (var i = 0, l = changes.length; i < l; i++) {
           this.trigger('change:' + changes[i], this, current[changes[i]], options);
         }
       }
 
-      if (changing) return this;
+      if (changing) {
+	return this;
+      }
       if (!silent) {
         while (this._pending) {
           this._pending = false;
@@ -215,27 +237,43 @@
     // model differs from its current attributes, they will be overridden,
     // triggering a `"change"` event.
     fetch: function(options) {
-      options = options ? _.clone(options) : {};
-      if (options.parse === void 0) options.parse = true;
+      var foptions = {};
+      if (options) {
+            foptions = _.clone(options);
+      }
+      options = _.clone(foptions);
+
+      if (options.parse === void 0) {
+	options.parse = true;
+      }
+
       var model = this;
       var success = options.success;
-      options.success = function(resp) {
-        if (!model.set(model.parse(resp, options), options)) return false;
-        if (success) success(model, resp, options);
-        model.trigger('sync', model, resp, options);
+      options.success = function(response) {
+        if (!model.set(model.parse(response, options), options)) {
+	  return false;
+	}
+        if (success) {
+	  success(model, response, options);
+	}
+        model.trigger('sync', model, response, options);
       };
       return this.sync('read', this, options);
     },
 
-    parse: function(resp, options) {
-      return resp;
+    parse: function(response, options) {
+      return response;
     },
 
     _validate: function(attrs, options) {
-      if (!options.validate || !this.validate) return true;
+      if (!options.validate || !this.validate) {
+	return true;
+      }
       attrs = _.extend({}, this.attributes, attrs);
       var error = this.validationError = this.validate(attrs, options) || null;
-      if (!error) return true;
+      if (!error) {
+	return true;
+      }
       this.trigger('invalid', this, error, _.extend(options, {validationError: error}));
       return false;
     }
