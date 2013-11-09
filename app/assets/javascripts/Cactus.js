@@ -1,7 +1,6 @@
 //     Cactus.js 1.1.0
 //     By Cactus CS3213
 //     Natioanal University of Singapore
-
 (function(){
 
   // Initial Setup
@@ -1281,13 +1280,6 @@
   });
 
   // Cactus.History
-  // ----------------
-
-  // Handles cross-browser history management, based on either
-  // [pushState](http://diveintohtml5.info/history.html) and real URLs, or
-  // [onhashchange](https://developer.mozilla.org/en-US/docs/DOM/window.onhashchange)
-  // and URL fragments. If the browser supports neither (old IE, natch),
-  // falls back to polling.
   var History = Cactus.History = function() {
     this.handlers = [];
     _.bindAll(this, 'checkUrl');
@@ -1391,7 +1383,6 @@
           this.location.replace(this.root + this.location.search + '#' + this.fragment);
           // Return immediately as browser will do redirect to new url
           return true;
-
         // Or if we've started out with a hash-based route, but we're currently
         // in a browser where it could be `pushState`-based instead...
         } else if (this._hasPushState && atRoot && loc.hash) {
@@ -1400,24 +1391,13 @@
         }
 
       }
-
       if (!this.options.silent) return this.loadUrl();
     },
-
-    // Disable Cactus.history, perhaps temporarily. Not useful in a real app,
-    // but possibly useful for unit testing Routers.
-    stop: function() {
-      Cactus.$(window).off('popstate', this.checkUrl).off('hashchange', this.checkUrl);
-      clearInterval(this._checkUrlInterval);
-      History.started = false;
-    },
-
     // Add a route to be tested when the fragment changes. Routes added later
     // may override previous routes.
     route: function(route, callback) {
       this.handlers.unshift({route: route, callback: callback});
     },
-
     // Checks the current URL to see if it has changed, and if it has,
     // calls `loadUrl`, normalizing across the hidden iframe.
     checkUrl: function(e) {
