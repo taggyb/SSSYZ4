@@ -2,12 +2,10 @@
 //     By Cactus CS3213
 //     Natioanal University of Singapore
 (function(){
-
   // Initial Setup
   // Save a reference to the global object (`window` in the browser, `exports`
   // on the server).
   var root = this;
-
   // Save the previous value of the `Cactus` variable, so that it can be
   // restored later on, if `noConflict` is used.
   var previousCactus = root.Cactus;
@@ -38,6 +36,7 @@
   // Runs Cactus.js in *noConflict* mode, returning the `Cactus` variable
   // to its previous owner. Returns a reference to this Cactus object.
   Cactus.noConflict = function() {
+    alert("noConflict?");
     root.Cactus = previousCactus;
     return this;
   };
@@ -793,7 +792,6 @@
 
   // Cactus.View
   // -------------
-
   // Cactus Views are almost more convention than they are actual code. A View
   // is simply a JavaScript object that represents a logical chunk of UI in the
   // DOM. This might be a single item, an entire list, a sidebar or panel, or
@@ -1138,29 +1136,21 @@
 
   // Cached regex for stripping a leading hash/slash and trailing space.
   var routeStripper = /^[#\/]|\s+$/g;
-
   // Cached regex for stripping leading and trailing slashes.
   var rootStripper = /^\/+|\/+$/g;
-
   // Cached regex for detecting MSIE.
   var isExplorer = /msie [\w.]+/;
-
   // Cached regex for removing a trailing slash.
   var trailingSlash = /\/$/;
-
   // Cached regex for stripping urls of hash and query.
   var pathStripper = /[?#].*$/;
-
   // Has the history handling already been started?
   History.started = false;
-
   // Set up all inheritable **Cactus.History** properties and methods.
   _.extend(History.prototype, Events, {
-
     // The default interval to poll for hash changes, if necessary, is
     // twenty times a second.
     interval: 50,
-
     // Gets the true hash value. Cannot use location.hash directly due to bug
     // in Firefox where location.hash will always be decoded.
     getHash: function(window) {
@@ -1220,7 +1210,6 @@
       // Transition from hashChange to pushState or vice versa if both are
       // requested.
       if (this._wantsHashChange && this._wantsPushState) {
-
         // If we've started off with a route from a `pushState`-enabled
         // browser, but we're currently in a browser that doesn't support it...
         if (!this._hasPushState && !atRoot) {
@@ -1234,7 +1223,6 @@
           this.fragment = this.getHash().replace(routeStripper, '');
           this.history.replaceState({}, document.title, this.root + this.fragment + loc.search);
         }
-
       }
       if (!this.options.silent) return this.loadUrl();
     },
@@ -1247,9 +1235,8 @@
     // calls `loadUrl`, normalizing across the hidden iframe.
     checkUrl: function(e) {
       var current = this.getFragment();
-      if (current === this.fragment && this.iframe) {
+      if (current === this.fragment && this.iframe) 
         current = this.getFragment(this.getHash(this.iframe));
-      }
       if (current === this.fragment) return false;
       if (this.iframe) this.navigate(current);
       this.loadUrl();
@@ -1267,7 +1254,6 @@
         }
       });
     },
-
     // Save a fragment into the hash history, or replace the URL state if the
     // 'replace' option is passed. You are responsible for properly URL-encoding
     // the fragment in advance.
@@ -1280,7 +1266,6 @@
       if (!options || options === true) options = {trigger: !!options};
 
       var url = this.root + (fragment = this.getFragment(fragment || ''));
-
       // Strip the fragment of the query and hash for matching.
       fragment = fragment.replace(pathStripper, '');
 
@@ -1322,22 +1307,18 @@
       } else 
         location.hash = '#' + fragment;
     }
-
   });
 
   // Create the default Cactus.history.
   Cactus.history = new History;
 
   // Helpers
-  // -------
-
   // Helper function to correctly set up the prototype chain, for subclasses.
   // Similar to `goog.inherits`, but uses a hash of prototype properties and
   // class properties to be extended.
   var extend = function(protoProps, staticProps) {
     var parent = this;
     var child;
-
     // The constructor function for the new subclass is either defined by you
     // (the "constructor" property in your `extend` definition), or defaulted
     // by us to simply call the parent's constructor.
@@ -1346,7 +1327,6 @@
     } else {
       child = function(){ return parent.apply(this, arguments); };
     }
-
     // Add static properties to the constructor function, if supplied.
     _.extend(child, parent, staticProps);
 
@@ -1355,7 +1335,6 @@
     var Surrogate = function(){ this.constructor = child; };
     Surrogate.prototype = parent.prototype;
     child.prototype = new Surrogate;
-
     // Add prototype properties (instance properties) to the subclass,
     // if supplied.
     if (protoProps) _.extend(child.prototype, protoProps);
@@ -1377,5 +1356,4 @@
       model.trigger('error', model, resp, options);
     };
   };
-
 }).call(this);
