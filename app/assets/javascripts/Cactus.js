@@ -1,20 +1,14 @@
 //     Cactus.js 1.1.0
 //     By Cactus CS3213
-//     Natioanal University of Singapore
+//     National University of Singapore
 (function(){
-  // Initial Setup
-  // Save a reference to the global object (`window` in the browser, `exports`
-  // on the server).
   var root = this;
 
-  // Create local references to array methods we'll want to use later.
   var array = [];
   var push = array.push;
   var slice = array.slice;
   var splice = array.splice;
 
-  // The top-level namespace. All public Cactus classes and modules will
-  // be attached to this. Exported for both the browser and the server.
   var Cactus;
   if (typeof exports !== 'undefined') {
     Cactus = exports;
@@ -22,22 +16,16 @@
     Cactus = root.Cactus = {};
   }
 
-  // Require Underscore, if we're on the server, and it's not already present.
   var _ = root._;
   if (!_ && (typeof require !== 'undefined')) _ = require('underscore');
 
-  // For Cactus's purposes, jQuery, Zepto, Ender, or My Library (kidding) owns
-  // the `$` variable.
   Cactus.$ = root.jQuery || root.Zepto || root.ender || root.$;
 
   // Cactus.Events
   // ---------------
   var Events = Cactus.Events = {
 
-    // Bind an event to a `callback` function. Passing `"all"` will bind
-    // the callback to all events fired.
     on: function(name, callback, context) {
-      //alert("Events.on");
       if (!eventsApi(this, 'on', name, [callback, context]) || !callback) return this;
       this._events || (this._events = {});
       var events = this._events[name] || (this._events[name] = []);
@@ -45,12 +33,7 @@
       return this;
     },
 
-    // Remove one or many callbacks. If `context` is null, removes all
-    // callbacks with that function. If `callback` is null, removes all
-    // callbacks for the event. If `name` is null, removes all bound
-    // callbacks for all events.
     off: function(name, callback, context) {
-      //alert("Events.off");
       var retain, ev, events, names, i, l, j, k;
       if (!this._events || !eventsApi(this, 'off', name, [callback, context])) return this;
       if (!name && !callback && !context) {
@@ -78,12 +61,7 @@
       return this;
     },
 
-    // Trigger one or many events, firing all bound callbacks. Callbacks are
-    // passed the same arguments as `trigger` is, apart from the event name
-    // (unless you're listening on `"all"`, which will cause your callback to
-    // receive the true name of the event as the first argument).
     trigger: function(name) {
-      //alert("Events.trigger");
       if (!this._events) return this;
       var args = slice.call(arguments, 1);
       if (!eventsApi(this, 'trigger', name, args)) return this;
@@ -94,10 +72,7 @@
       return this;
     },
 
-    // Tell this object to stop listening to either specific events ... or
-    // to every object it's currently listening to.
     stopListening: function(obj, name, callback) {
-      //alert("Events.stopListening");
       var listeningTo = this._listeningTo;
       if (!listeningTo) return this;
       var remove = !name && !callback;
@@ -112,18 +87,10 @@
     }
 
   };
-
-  // Regular expression used to split event strings.
-  var eventSplitter = /\s+/;
-
-  // Implement fancy features of the Events API such as multiple event
-  // names `"change blur"` and jQuery-style event maps `{change: action}`
-  // in terms of the existing API.
   var eventsApi = function(obj, action, name, rest) {
-    //alert("events.eventsapi");
+    var eventSplitter = /\s+/;
     if (!name) return true;
 
-    // Handle event maps.
     if (typeof name === 'object') {
       for (var key in name) {
         obj[action].apply(obj, [key, name[key]].concat(rest));
@@ -131,7 +98,6 @@
       return false;
     }
 
-    // Handle space separated event names.
     if (eventSplitter.test(name)) {
       var names = name.split(eventSplitter);
       for (var i = 0, l = names.length; i < l; i++) {
@@ -143,11 +109,7 @@
     return true;
   };
 
-  // A difficult-to-believe, but optimized internal dispatch function for
-  // triggering events. Tries to keep the usual cases speedy (most internal
-  // Cactus events have 3 arguments).
   var triggerEvents = function(events, args) {
-    //alert("event.triggerevents");
     var ev, i = -1, l = events.length, a1 = args[0], a2 = args[1], a3 = args[2];
     switch (args.length) {
       case 0: while (++i < l) (ev = events[i]).callback.call(ev.ctx); return;
@@ -160,9 +122,6 @@
 
   var listenMethods = {listenTo: 'on', listenToOnce: 'once'};
 
-  // Inversion-of-control versions of `on` and `once`. Tell *this* object to
-  // listen to an event in another object ... keeping track of what it's
-  // listening to.
   _.each(listenMethods, function(implementation, method) {
     Events[method] = function(obj, name, callback) {
       var listeningTo = this._listeningTo || (this._listeningTo = {});
@@ -174,9 +133,6 @@
     };
   });
 
-  // Aliases for backwards compatibility.
-  Events.bind   = Events.on;
-  Events.unbind = Events.off;
 
   // Allow the `Cactus` object to serve as a global event bus, for folks who
   // want global "pubsub" in a convenient place.
@@ -184,14 +140,6 @@
 
   // Cactus.Model
   // --------------
-
-  // Cactus **Models** are the basic data object in the framework --
-  // frequently representing a row in a table in a database on your server.
-  // A discrete chunk of data and a bunch of useful, related methods for
-  // performing computations and transformations on that data.
-
-  // Create a new model with the specified attributes. A client id (`cid`)
-  // is automatically generated and assigned for you.
   var Model = Cactus.Model = function(attributes, options) {
     var attrs = attributes || {};
     options || (options = {});
@@ -208,38 +156,28 @@
   // Attach all inheritable methods to the Model prototype.
   _.extend(Model.prototype, Events, {
 
-    // A hash of attributes whose current and previous value differ.
     changed: null,
 
-    // The value returned during the last failed validation.
     validationError: null,
 
-    // The default name for the JSON `id` attribute is `"id"`. MongoDB and
-    // CouchDB users may want to set this to `"_id"`.
     idAttribute: 'id',
 
-    // Initialize is an empty function by default. Override it with your own
-    // initialization logic.
     initialize: function(){
-      //alert("model.initialize");
     },
 
     // Return a copy of the model's `attributes` object.
     toJSON: function(options) {
-      //alert("model.toJSON");
       return _.clone(this.attributes);
     },
 
     // Proxy `Cactus.sync` by default -- but override this if you need
     // custom syncing semantics for *this* particular model.
     sync: function() {
-      //alert("model.sync");
       return Cactus.sync.apply(this, arguments);
     },
 
     // Get the value of an attribute.
     get: function(attr) {
-      //alert("model.get");
       return this.attributes[attr];
     },
 
@@ -247,7 +185,6 @@
     // the core primitive operation of a model, updating the data and notifying
     // anyone who needs to know about the change in state. The heart of the beast.
     set: function(key, val, options) {
-      //alert("model.set");
       var attr, attrs, unset, changes, silent, changing, prev, current;
       if (key == null) return this;
 
@@ -292,7 +229,6 @@
         unset ? delete current[attr] : current[attr] = val;
       }
 
-      // Trigger all relevant attribute changes.
       if (!silent) {
         if (changes.length) this._pending = true;
         for (var i = 0, l = changes.length; i < l; i++) {
@@ -300,8 +236,6 @@
         }
       }
 
-      // You might be wondering why there's a `while` loop here. Changes can
-      // be recursively nested within `"change"` events.
       if (changing) return this;
       if (!silent) {
         while (this._pending) {
@@ -318,7 +252,6 @@
     // model differs from its current attributes, they will be overridden,
     // triggering a `"change"` event.
     fetch: function(options) {
-      //alert("model.fetch");
       options = options ? _.clone(options) : {};
       if (options.parse === void 0) options.parse = true;
       var model = this;
@@ -332,18 +265,11 @@
       return this.sync('read', this, options);
     },
 
-
-    // **parse** converts a response into the hash of attributes to be `set` on
-    // the model. The default implementation is just to pass the response along.
     parse: function(resp, options) {
-      //alert("model.parse");
       return resp;
     },
 
-    // Run validation against the next complete set of model attributes,
-    // returning `true` if all is well. Otherwise, fire an `"invalid"` event.
     _validate: function(attrs, options) {
-      //alert("mode._validate");
       if (!options.validate || !this.validate) return true;
       attrs = _.extend({}, this.attributes, attrs);
       var error = this.validationError = this.validate(attrs, options) || null;
@@ -368,17 +294,6 @@
 
   // Cactus.Collection
   // -------------------
-
-  // If models tend to represent a single row of data, a Cactus Collection is
-  // more analagous to a table full of data ... or a small slice or page of that
-  // table, or a collection of rows that belong together for a particular reason
-  // -- all of the messages in this particular folder, all of the documents
-  // belonging to this particular author, and so on. Collections maintain
-  // indexes of their models, both in order, and for lookup by `id`.
-
-  // Create a new **Collection**, perhaps to contain a specific type of `model`.
-  // If a `comparator` is specified, the Collection will maintain
-  // its models in sort order, as they're added and removed.
   var Collection = Cactus.Collection = function(models, options) {
     options || (options = {});
     if (options.model) this.model = options.model;
@@ -759,21 +674,19 @@
 
   // Cactus.View
   // -------------
-  // Cactus Views are almost more convention than they are actual code. A View
-  // is simply a JavaScript object that represents a logical chunk of UI in the
-  // DOM. This might be a single item, an entire list, a sidebar or panel, or
-  // even the surrounding frame which wraps your whole app. Defining a chunk of
-  // UI as a **View** allows you to define your DOM events declaratively, without
-  // having to worry about render order ... and makes it easy for the view to
-  // react to specific changes in the state of your models.
-
-  // Creating a Cactus.View creates its initial element outside of the DOM,
-  // if an existing element is not provided...
   var View = Cactus.View = function(options) {
     this.cid = _.uniqueId('view');
     options || (options = {});
     _.extend(this, _.pick(options, viewOptions));
-    this._ensureElement();
+    if (!this.el) {
+        var attrs = _.extend({}, _.result(this, 'attributes'));
+        if (this.id) attrs.id = _.result(this, 'id');
+        if (this.className) attrs['class'] = _.result(this, 'className');
+        var $el = Cactus.$('<' + _.result(this, 'tagName') + '>').attr(attrs);
+        this.setElement($el, false);
+      } else {
+        this.setElement(_.result(this, 'el'), false);
+      }
     this.initialize.apply(this, arguments);
     this.delegateEvents();
   };
@@ -790,39 +703,26 @@
     // The default `tagName` of a View's element is `"div"`.
     tagName: 'div',
 
-    // jQuery delegate for element lookup, scoped to DOM elements within the
-    // current view. This should be preferred to global lookups where possible.
     $: function(selector) {
       return this.$el.find(selector);
     },
 
-    // Initialize is an empty function by default. Override it with your own
-    // initialization logic.
     initialize: function(){
-      //alert("View.initialize");
     },
 
-    // **render** is the core function that your view should override, in order
-    // to populate its element (`this.el`), with the appropriate HTML. The
-    // convention is for **render** to always return `this`.
     render: function() {
-      alert("View.render");
       return this;
     },
 
     // Remove this view by taking the element out of the DOM, and removing any
     // applicable Cactus.Events listeners.
     remove: function() {
-      //alert("View.remove");
       this.$el.remove();
       this.stopListening();
       return this;
     },
 
-    // Change the view's element (`this.el` property), including event
-    // re-delegation.
     setElement: function(element, delegate) {
-      //alert("View.setElement");
       if (this.$el) this.undelegateEvents();
       this.$el = element instanceof Cactus.$ ? element : Cactus.$(element);
       this.el = this.$el[0];
@@ -830,23 +730,7 @@
       return this;
     },
 
-    // Set callbacks, where `this.events` is a hash of
-    //
-    // *{"event selector": "callback"}*
-    //
-    //     {
-    //       'mousedown .title':  'edit',
-    //       'click .button':     'save',
-    //       'click .open':       function(e) { ... }
-    //     }
-    //
-    // pairs. Callbacks will be bound to the view, with `this` set properly.
-    // Uses event delegation for efficiency.
-    // Omitting the selector binds the event to `this.el`.
-    // This only works for delegate-able events: not `focus`, `blur`, and
-    // not `change`, `submit`, and `reset` in Internet Explorer.
     delegateEvents: function(events) {
-      //alert("View.delegateEvents");
       if (!(events || (events = _.result(this, 'events')))) return this;
       this.undelegateEvents();
       for (var key in events) {
@@ -867,52 +751,18 @@
       return this;
     },
 
-    // Clears all callbacks previously bound to the view with `delegateEvents`.
-    // You usually don't need to use this, but may wish to if you have multiple
-    // Cactus views attached to the same DOM element.
     undelegateEvents: function() {
-      //alert("View.undelegateEvents");
       this.$el.off('.delegateEvents' + this.cid);
       return this;
     },
 
-    // Ensure that the View has a DOM element to render into.
-    // If `this.el` is a string, pass it through `$()`, take the first
-    // matching element, and re-assign it to `el`. Otherwise, create
-    // an element from the `id`, `className` and `tagName` properties.
     _ensureElement: function() {
-      //alert("view.ensureElement");
-      if (!this.el) {
-        var attrs = _.extend({}, _.result(this, 'attributes'));
-        if (this.id) attrs.id = _.result(this, 'id');
-        if (this.className) attrs['class'] = _.result(this, 'className');
-        var $el = Cactus.$('<' + _.result(this, 'tagName') + '>').attr(attrs);
-        this.setElement($el, false);
-      } else {
-        this.setElement(_.result(this, 'el'), false);
-      }
     }
 
   });
 
   // Cactus.sync
   // -------------
-
-  // Override this function to change the manner in which Cactus persists
-  // models to the server. You will be passed the type of request, and the
-  // model in question. By default, makes a RESTful Ajax request
-  // to the model's `url()`. Some possible customizations could be:
-  //
-  // * Use `setTimeout` to batch rapid-fire updates into a single request.
-  // * Send up the models as XML instead of JSON.
-  // * Persist models via WebSockets instead of Ajax.
-  //
-  // Turn on `Cactus.emulateHTTP` in order to send `PUT` and `DELETE` requests
-  // as `POST`, with a `_method` parameter containing the true HTTP method,
-  // as well as all requests with the body as `application/x-www-form-urlencoded`
-  // instead of `application/json` with the model in a param named `model`.
-  // Useful when interfacing with server-side languages like **PHP** that make
-  // it difficult to read the body of `PUT` requests.
   Cactus.sync = function(method, model, options) {
 
 var type = methods[method];
@@ -988,40 +838,30 @@ return xhr;
 
   // Cactus.Router
   // ---------------
-
-  // Routers map faux-URLs to actions, and fire events when routes are
-  // matched. Creating a new one sets its `routes` hash, if not set statically.
   var Router = Cactus.Router = function(options) {
     options || (options = {});
     if (options.routes) this.routes = options.routes;
-    this._bindRoutes();
+    if(this.routes){
+       this.routes = _.result(this, 'routes');
+      var route, routes = _.keys(this.routes);
+      while ((route = routes.pop()) != null) {
+        this.route(route, this.routes[route]);
+      }
+    }
     this.initialize.apply(this, arguments);
   };
 
-  // Cached regular expressions for matching named param parts and splatted
-  // parts of route strings.
   var optionalParam = /\((.*?)\)/g;
   var namedParam    = /(\(\?)?:\w+/g;
   var splatParam    = /\*\w+/g;
   var escapeRegExp  = /[\-{}\[\]+?.,\\\^$|#\s]/g;
 
-  // Set up all inheritable **Cactus.Router** properties and methods.
   _.extend(Router.prototype, Events, {
 
-    // Initialize is an empty function by default. Override it with your own
-    // initialization logic.
     initialize: function(){
-      //alert("router.initialize");
     },
 
-    // Manually bind a single named route to a callback. For example:
-    //
-    //     this.route('search/:query/p:num', 'search', function(query, num) {
-    //       ...
-    //     });
-    //
     route: function(route, name, callback) {
-      //alert("router.route");
       if (!_.isRegExp(route)) route = this._routeToRegExp(route);
       if (_.isFunction(name)) {
         callback = name;
@@ -1041,28 +881,11 @@ return xhr;
 
     // Simple proxy to `Cactus.history` to save a fragment into the history.
     navigate: function(fragment, options) {
-      //alert("router.navigate");
       Cactus.history.navigate(fragment, options);
       return this;
     },
 
-    // Bind all defined routes to `Cactus.history`. We have to reverse the
-    // order of the routes here to support behavior where the most general
-    // routes can be defined at the bottom of the route map.
-    _bindRoutes: function() {
-      //alert("router.bindroutes");
-      if (!this.routes) return;
-      this.routes = _.result(this, 'routes');
-      var route, routes = _.keys(this.routes);
-      while ((route = routes.pop()) != null) {
-        this.route(route, this.routes[route]);
-      }
-    },
-
-    // Convert a route string into a regular expression, suitable for matching
-    // against the current location hash.
     _routeToRegExp: function(route) {
-      //alert("router._routeToRegExp");
       route = route.replace(escapeRegExp, '\\$&')
                    .replace(optionalParam, '(?:$1)?')
                    .replace(namedParam, function(match, optional) {
@@ -1072,11 +895,7 @@ return xhr;
       return new RegExp('^' + route + '$');
     },
 
-    // Given a route, and a URL fragment that it matches, return the array of
-    // extracted decoded parameters. Empty or unmatched parameters will be
-    // treated as `null` to normalize cross-browser behavior.
     _extractParameters: function(route, fragment) {
-      //alert("router._extractParameters");
       var params = route.exec(fragment).slice(1);
       return _.map(params, function(param) {
         return param ? decodeURIComponent(param) : null;
@@ -1100,8 +919,6 @@ return xhr;
   var routeStripper = /^[#\/]|\s+$/g;
   // Cached regex for stripping leading and trailing slashes.
   var rootStripper = /^\/+|\/+$/g;
-  // Cached regex for detecting MSIE.
-  var isExplorer = /msie [\w.]+/;
   // Cached regex for removing a trailing slash.
   var trailingSlash = /\/$/;
   // Cached regex for stripping urls of hash and query.
@@ -1274,35 +1091,21 @@ return xhr;
   // Create the default Cactus.history.
   Cactus.history = new History;
 
-  // Helpers
-  // Helper function to correctly set up the prototype chain, for subclasses.
-  // Similar to `goog.inherits`, but uses a hash of prototype properties and
-  // class properties to be extended.
   var extend = function(protoProps, staticProps) {
     var parent = this;
     var child;
-    // The constructor function for the new subclass is either defined by you
-    // (the "constructor" property in your `extend` definition), or defaulted
-    // by us to simply call the parent's constructor.
     if (protoProps && _.has(protoProps, 'constructor')) {
       child = protoProps.constructor;
     } else {
       child = function(){ return parent.apply(this, arguments); };
     }
-    // Add static properties to the constructor function, if supplied.
     _.extend(child, parent, staticProps);
 
-    // Set the prototype chain to inherit from `parent`, without calling
-    // `parent`'s constructor function.
     var Surrogate = function(){ this.constructor = child; };
     Surrogate.prototype = parent.prototype;
     child.prototype = new Surrogate;
-    // Add prototype properties (instance properties) to the subclass,
-    // if supplied.
     if (protoProps) _.extend(child.prototype, protoProps);
 
-    // Set a convenience property in case the parent's prototype is needed
-    // later.
     child.__super__ = parent.prototype;
 
     return child;
