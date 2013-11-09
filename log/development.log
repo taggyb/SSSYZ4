@@ -72641,3 +72641,1133 @@ Served asset /main.js - 304 Not Modified (0ms)
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-11-09 15:22:37 +0800
 Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.1ms)
+Compiled Cactus.js  (0ms)  (pid 3100)
+Compiled application.js  (19ms)  (pid 3100)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 134ms (Views: 133.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /twitter-bootstrap-static/bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /twitter-bootstrap-static/fontawesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /custom.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /main.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.form.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /jquery.form.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /twitter/bootstrap/bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /twitter/bootstrap/bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /twitter/bootstrap/bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /twitter/bootstrap/bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /twitter/bootstrap/bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /twitter/bootstrap/bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /twitter/bootstrap/bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /twitter/bootstrap/bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /twitter/bootstrap/bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /twitter/bootstrap/bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /twitter/bootstrap/bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /twitter/bootstrap/bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /twitter/bootstrap/bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /twitter/bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/underscore.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /underscore.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/Cactus.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /Cactus.js - 200 OK (3ms)
+
+
+Started GET "/assets/Cactus2.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /Cactus2.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/displayAllMovies.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:33 +0800
+Served asset /movies/displayAllMovies.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/editSingleMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:34 +0800
+Served asset /movies/editSingleMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/index.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:34 +0800
+Served asset /movies/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/newMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:34 +0800
+Served asset /movies/newMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/singlemovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:34 +0800
+Served asset /movies/singlemovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/models/review.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:34 +0800
+Served asset /models/review.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/models/movie.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:34 +0800
+Served asset /models/movie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/collections/movie.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:34 +0800
+Served asset /collections/movie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/collections/movies.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:34 +0800
+Served asset /collections/movies.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/collections/reviews.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:34 +0800
+Served asset /collections/reviews.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/displayAllMovies.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:34 +0800
+Served asset /views/movies/displayAllMovies.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/editSingleMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:34 +0800
+Served asset /views/movies/editSingleMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/index.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:34 +0800
+Served asset /views/movies/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/newMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:34 +0800
+Served asset /views/movies/newMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/singlemovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:34 +0800
+Served asset /views/movies/singlemovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/routers/index.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:34 +0800
+Served asset /routers/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:34 +0800
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:34 +0800
+Served asset /main.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-11-09 15:24:34 +0800
+Served asset /application.js - 304 Not Modified (39ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.1ms)
+Compiled Cactus.js  (35ms)  (pid 3100)
+Compiled application.js  (20ms)  (pid 3100)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 149ms (Views: 148.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /twitter-bootstrap-static/bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /twitter-bootstrap-static/fontawesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /main.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.form.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /jquery.form.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /twitter/bootstrap/bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /twitter/bootstrap/bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /twitter/bootstrap/bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /twitter/bootstrap/bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /twitter/bootstrap/bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /twitter/bootstrap/bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /twitter/bootstrap/bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /twitter/bootstrap/bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /twitter/bootstrap/bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /twitter/bootstrap/bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /twitter/bootstrap/bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /twitter/bootstrap/bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /twitter/bootstrap/bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /twitter/bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/underscore.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /underscore.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/Cactus.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /Cactus.js - 200 OK (2ms)
+
+
+Started GET "/assets/Cactus2.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /Cactus2.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/displayAllMovies.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /movies/displayAllMovies.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/models/movie.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /models/movie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/editSingleMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /movies/editSingleMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/index.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /movies/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/newMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /movies/newMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/singlemovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:24 +0800
+Served asset /movies/singlemovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/models/review.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:25 +0800
+Served asset /models/review.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/collections/movie.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:25 +0800
+Served asset /collections/movie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/collections/movies.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:25 +0800
+Served asset /collections/movies.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/collections/reviews.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:25 +0800
+Served asset /collections/reviews.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/displayAllMovies.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:25 +0800
+Served asset /views/movies/displayAllMovies.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/editSingleMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:25 +0800
+Served asset /views/movies/editSingleMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/index.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:25 +0800
+Served asset /views/movies/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/newMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:25 +0800
+Served asset /views/movies/newMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/singlemovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:25 +0800
+Served asset /views/movies/singlemovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/routers/index.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:25 +0800
+Served asset /routers/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:25 +0800
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:25 +0800
+Served asset /main.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-11-09 15:26:25 +0800
+Served asset /application.js - 304 Not Modified (35ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.1ms)
+Compiled Cactus.js  (0ms)  (pid 3100)
+Compiled application.js  (18ms)  (pid 3100)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 131ms (Views: 130.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /twitter-bootstrap-static/bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /twitter-bootstrap-static/fontawesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /main.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.form.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /jquery.form.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /twitter/bootstrap/bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /twitter/bootstrap/bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /twitter/bootstrap/bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /twitter/bootstrap/bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /twitter/bootstrap/bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /twitter/bootstrap/bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /twitter/bootstrap/bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /twitter/bootstrap/bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /twitter/bootstrap/bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /twitter/bootstrap/bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /twitter/bootstrap/bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /twitter/bootstrap/bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /twitter/bootstrap/bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /twitter/bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/underscore.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:17 +0800
+Served asset /underscore.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/Cactus.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /Cactus.js - 200 OK (1ms)
+
+
+Started GET "/assets/Cactus2.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /Cactus2.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/displayAllMovies.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /movies/displayAllMovies.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/editSingleMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /movies/editSingleMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/index.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /movies/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/newMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /movies/newMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/singlemovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /movies/singlemovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/models/movie.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /models/movie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/models/review.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /models/review.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/collections/movie.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /collections/movie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/collections/movies.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /collections/movies.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/collections/reviews.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /collections/reviews.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/displayAllMovies.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /views/movies/displayAllMovies.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/editSingleMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /views/movies/editSingleMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/index.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /views/movies/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/newMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /views/movies/newMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/singlemovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /views/movies/singlemovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/routers/index.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /routers/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /main.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:18 +0800
+Served asset /application.js - 304 Not Modified (40ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.1ms)
+Compiled Cactus.js  (0ms)  (pid 3100)
+Compiled application.js  (17ms)  (pid 3100)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 134ms (Views: 133.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /twitter-bootstrap-static/bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /twitter-bootstrap-static/fontawesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /main.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.form.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /jquery.form.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /twitter/bootstrap/bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /twitter/bootstrap/bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /twitter/bootstrap/bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /twitter/bootstrap/bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /twitter/bootstrap/bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /twitter/bootstrap/bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /twitter/bootstrap/bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /twitter/bootstrap/bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /twitter/bootstrap/bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /twitter/bootstrap/bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /twitter/bootstrap/bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /twitter/bootstrap/bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /twitter/bootstrap/bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /twitter/bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/underscore.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /underscore.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/Cactus.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /Cactus.js - 200 OK (2ms)
+
+
+Started GET "/assets/Cactus2.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /Cactus2.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/displayAllMovies.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /movies/displayAllMovies.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/editSingleMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /movies/editSingleMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/models/movie.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /models/movie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/index.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /movies/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/newMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /movies/newMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/singlemovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /movies/singlemovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/models/review.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /models/review.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/collections/movie.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /collections/movie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/collections/movies.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /collections/movies.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/collections/reviews.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /collections/reviews.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/displayAllMovies.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /views/movies/displayAllMovies.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/editSingleMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /views/movies/editSingleMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/index.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /views/movies/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/newMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /views/movies/newMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/singlemovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /views/movies/singlemovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/routers/index.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /routers/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:27 +0800
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:28 +0800
+Served asset /main.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-11-09 15:28:28 +0800
+Served asset /application.js - 304 Not Modified (81ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-11-09 15:55:46 +0800
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.1ms)
+Compiled Cactus.js  (0ms)  (pid 3100)
+Compiled application.js  (56ms)  (pid 3100)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 151ms (Views: 150.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-11-09 15:55:46 +0800
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2013-11-09 15:55:46 +0800
+Served asset /twitter-bootstrap-static/bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2013-11-09 15:55:46 +0800
+Served asset /twitter-bootstrap-static/fontawesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-11-09 15:55:46 +0800
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-11-09 15:55:46 +0800
+Served asset /custom.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2013-11-09 15:55:46 +0800
+Served asset /main.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:46 +0800
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.form.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:46 +0800
+Served asset /jquery.form.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /twitter/bootstrap/bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /twitter/bootstrap/bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /twitter/bootstrap/bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /twitter/bootstrap/bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /twitter/bootstrap/bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /twitter/bootstrap/bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /twitter/bootstrap/bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /twitter/bootstrap/bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /twitter/bootstrap/bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /twitter/bootstrap/bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /twitter/bootstrap/bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /twitter/bootstrap/bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /twitter/bootstrap/bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /twitter/bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/underscore.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /underscore.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/Cactus.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /Cactus.js - 200 OK (2ms)
+
+
+Started GET "/assets/Cactus2.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /Cactus2.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/displayAllMovies.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /movies/displayAllMovies.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/editSingleMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /movies/editSingleMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/index.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /movies/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/newMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /movies/newMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/singlemovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /movies/singlemovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/models/movie.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /models/movie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/models/review.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /models/review.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/collections/movie.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /collections/movie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/collections/movies.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /collections/movies.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/collections/reviews.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /collections/reviews.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/displayAllMovies.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /views/movies/displayAllMovies.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/editSingleMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /views/movies/editSingleMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/index.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /views/movies/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/newMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /views/movies/newMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/singlemovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /views/movies/singlemovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/routers/index.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /routers/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /main.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /application.js - 304 Not Modified (72ms)
+
+
+Started GET "/assets/glyphicons-halflings.png" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /glyphicons-halflings.png - 304 Not Modified (223ms)
+
+
+Started GET "/assets/fontawesome-webfont.woff" for 127.0.0.1 at 2013-11-09 15:55:47 +0800
+Served asset /fontawesome-webfont.woff - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 29ms (Views: 28.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /twitter-bootstrap-static/bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /twitter-bootstrap-static/fontawesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /main.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.form.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /jquery.form.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /twitter/bootstrap/bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /twitter/bootstrap/bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /twitter/bootstrap/bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /twitter/bootstrap/bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /twitter/bootstrap/bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /twitter/bootstrap/bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /twitter/bootstrap/bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /twitter/bootstrap/bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /twitter/bootstrap/bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /twitter/bootstrap/bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /twitter/bootstrap/bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /twitter/bootstrap/bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /twitter/bootstrap/bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /twitter/bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/underscore.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /underscore.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/Cactus.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /Cactus.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/Cactus2.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /Cactus2.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/displayAllMovies.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /movies/displayAllMovies.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/editSingleMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /movies/editSingleMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/index.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /movies/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/newMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /movies/newMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/movies/singlemovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /movies/singlemovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/models/movie.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /models/movie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/models/review.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /models/review.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/collections/movie.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /collections/movie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/collections/movies.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /collections/movies.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/collections/reviews.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /collections/reviews.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/displayAllMovies.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /views/movies/displayAllMovies.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/editSingleMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /views/movies/editSingleMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/index.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /views/movies/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/newMovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /views/movies/newMovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/views/movies/singlemovie.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /views/movies/singlemovie.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/routers/index.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /routers/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /main.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-11-09 15:56:02 +0800
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/glyphicons-halflings.png" for 127.0.0.1 at 2013-11-09 15:56:03 +0800
+Served asset /glyphicons-halflings.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/fontawesome-webfont.woff" for 127.0.0.1 at 2013-11-09 15:56:03 +0800
+Served asset /fontawesome-webfont.woff - 304 Not Modified (0ms)
