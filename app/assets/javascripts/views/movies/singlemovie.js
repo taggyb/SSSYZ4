@@ -125,9 +125,7 @@ Cactus2.Views.SingleMovie = Cactus.View.extend({
         destroyReview: function() {
                 //COMPLETELY UNBIND THE VIEW
                 this.undelegateEvents();
-
                 this.$el.removeData().unbind(); 
-
                 //Remove view from DOM
                 this.remove();  
                 Cactus.View.prototype.remove.call(this);

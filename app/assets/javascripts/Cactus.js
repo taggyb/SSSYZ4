@@ -1,7 +1,6 @@
 //     Cactus.js 1.1.0
 //     By Cactus CS3213
 //     Natioanal University of Singapore
-
 (function(){
 
   // Initial Setup
@@ -1127,17 +1126,9 @@
   });
 
   // Cactus.History
-  // ----------------
-
-  // Handles cross-browser history management, based on either
-  // [pushState](http://diveintohtml5.info/history.html) and real URLs, or
-  // [onhashchange](https://developer.mozilla.org/en-US/docs/DOM/window.onhashchange)
-  // and URL fragments. If the browser supports neither (old IE, natch),
-  // falls back to polling.
   var History = Cactus.History = function() {
     this.handlers = [];
     _.bindAll(this, 'checkUrl');
-
     // Ensure that `History` can be used outside of the browser.
     if (typeof window !== 'undefined') {
       this.location = window.location;
@@ -1237,7 +1228,6 @@
           this.location.replace(this.root + this.location.search + '#' + this.fragment);
           // Return immediately as browser will do redirect to new url
           return true;
-
         // Or if we've started out with a hash-based route, but we're currently
         // in a browser where it could be `pushState`-based instead...
         } else if (this._hasPushState && atRoot && loc.hash) {
@@ -1246,24 +1236,13 @@
         }
 
       }
-
       if (!this.options.silent) return this.loadUrl();
     },
-
-    // Disable Cactus.history, perhaps temporarily. Not useful in a real app,
-    // but possibly useful for unit testing Routers.
-    stop: function() {
-      Cactus.$(window).off('popstate', this.checkUrl).off('hashchange', this.checkUrl);
-      clearInterval(this._checkUrlInterval);
-      History.started = false;
-    },
-
     // Add a route to be tested when the fragment changes. Routes added later
     // may override previous routes.
     route: function(route, callback) {
       this.handlers.unshift({route: route, callback: callback});
     },
-
     // Checks the current URL to see if it has changed, and if it has,
     // calls `loadUrl`, normalizing across the hidden iframe.
     checkUrl: function(e) {
@@ -1326,7 +1305,6 @@
           if(!options.replace) this.iframe.document.open().close();
           this._updateHash(this.iframe.location, fragment, options.replace);
         }
-
       // If you've told us that you explicitly don't want fallback hashchange-
       // based history, then `navigate` becomes a page refresh.
       } else {
@@ -1341,10 +1319,8 @@
       if (replace) {
         var href = location.href.replace(/(javascript:|#).*$/, '');
         location.replace(href + '#' + fragment);
-      } else {
-        // Some browsers require that `hash` contains a leading #.
+      } else 
         location.hash = '#' + fragment;
-      }
     }
 
   });
@@ -1393,12 +1369,6 @@
 
   // Set up inheritance for the model, collection, router, view and history.
   Model.extend = Collection.extend = Router.extend = View.extend = History.extend = extend;
-
-  // Throw an error when a URL is needed, and none is supplied.
-  var urlError = function() {
-    throw new Error('A "url" property or function must be specified');
-  };
-
   // Wrap an optional error callback with a fallback error event.
   var wrapError = function(model, options) {
     var error = options.error;
