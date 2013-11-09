@@ -25,7 +25,7 @@
       if (!validateEvents(this, 'on', name, [callback, context]) || !callback) return this;
       this._events || (this._events = {});
       var events = this._events[name] || (this._events[name] = []);
-      events.push({callback: callback, context: context, ctx: context || this});
+      events.push({callback: callback, context: context || this});
       return this;
     },
 
@@ -67,6 +67,14 @@
     }
 
   };
+
+  var triggerEvents = function(events, args) {
+     for(var i = 0; i < events.length; i++){
+       var ctx = events[i].context;
+        events[i].callback.apply(ctx, args)
+      }
+    };
+
   var validateEvents = function(obj, action, name, rest) {
     var eventSplitter = /\s+/;
     if (!name) return true;
@@ -89,16 +97,6 @@
     return true;
   };
 
-  var triggerEvents = function(events, args) {
-    var ev, i = -1, l = events.length, a1 = args[0], a2 = args[1], a3 = args[2];
-    switch (args.length) {
-      case 0: while (++i < l) (ev = events[i]).callback.call(ev.ctx); return;
-      case 1: while (++i < l) (ev = events[i]).callback.call(ev.ctx, a1); return;
-      case 2: while (++i < l) (ev = events[i]).callback.call(ev.ctx, a1, a2); return;
-      case 3: while (++i < l) (ev = events[i]).callback.call(ev.ctx, a1, a2, a3); return;
-      default: while (++i < l) (ev = events[i]).callback.apply(ev.ctx, args);
-    }
-  };
   _.extend(Cactus, Events);
 
   // Cactus.Model
