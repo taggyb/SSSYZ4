@@ -1283,7 +1283,6 @@
   var History = Cactus.History = function() {
     this.handlers = [];
     _.bindAll(this, 'checkUrl');
-
     // Ensure that `History` can be used outside of the browser.
     if (typeof window !== 'undefined') {
       this.location = window.location;
@@ -1460,7 +1459,6 @@
           if(!options.replace) this.iframe.document.open().close();
           this._updateHash(this.iframe.location, fragment, options.replace);
         }
-
       // If you've told us that you explicitly don't want fallback hashchange-
       // based history, then `navigate` becomes a page refresh.
       } else {
@@ -1475,10 +1473,8 @@
       if (replace) {
         var href = location.href.replace(/(javascript:|#).*$/, '');
         location.replace(href + '#' + fragment);
-      } else {
-        // Some browsers require that `hash` contains a leading #.
+      } else 
         location.hash = '#' + fragment;
-      }
     }
 
   });
@@ -1527,12 +1523,6 @@
 
   // Set up inheritance for the model, collection, router, view and history.
   Model.extend = Collection.extend = Router.extend = View.extend = History.extend = extend;
-
-  // Throw an error when a URL is needed, and none is supplied.
-  var urlError = function() {
-    throw new Error('A "url" property or function must be specified');
-  };
-
   // Wrap an optional error callback with a fallback error event.
   var wrapError = function(model, options) {
     var error = options.error;
