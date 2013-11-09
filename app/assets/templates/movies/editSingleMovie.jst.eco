@@ -27,7 +27,7 @@
  
                 <div class="form-actions">             
                         <a class="btn btn-primary" id="update">Update Movie</a>
-                        <a class="btn" id="cancel">Cancel</a>
+                        <a class="btn" id="cancel" data-name="<%= @id %>">Cancel</a>
                 </div>
         </form>
 </div>
