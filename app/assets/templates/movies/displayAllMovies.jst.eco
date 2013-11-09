@@ -1,14 +1,19 @@
 <% if this.movies.length: %>
-<p style="text-align: right;"><a class="btn btn-primary" id="new_movie">Add new movie</a><br /><br /></p>
+	<!-- Navigation -->
+	<p><div>
+		<span id="back" class="btn">&#60; Back</span>&nbsp;<span id="next" class="btn">Next &#62;</span> <span style="float: right;"><a class="btn btn-primary" id="new_movie">Add new movie</a></span>
+	</div></p>
+	<!-- End of Navigation -->
+
         <div class="row movies">
                 <% for movie in this.movies: %>
                 <div class="span3">
-                        <% if movie.get('title').length > '15': %>
-                                <h3 class="movie-title"><a class="moviedetail" data-name="<%= movie.get('id') %>"><%= movie.get('title').substring(0,14) + '...' %></a></h3>
+                        <% if movie.get('title').length > '18': %>
+                                <h4 class="movie-title"><a class="moviedetail" data-name="<%= movie.get('id') %>"><%= movie.get('title').substring(0,17) + '...' %></a></h4>
                         <% else: %>
-                                <h3 class="movie-title"><a class="moviedetail" data-name="<%= movie.get('id') %>"><%= movie.get('title') %></a></h3>
+                                <h4 class="movie-title"><a class="moviedetail" data-name="<%= movie.get('id') %>"><%= movie.get('title') %></a></h4>
                         <% end %>
-                        <img src="<%= movie.get('img_url') %>">
+                        <img src="<%= movie.get('img_url') %>" alt="<%= movie.get('title') %>" title="<%= movie.get('title') %>">
                         <p><% if movie.get('avg_score') > '60': %>
                                 <icon class="icon-ok"></icon>
                         <% else: %>
@@ -17,6 +22,12 @@
                 </div>
                 <% end %>
         </div>
+
+	<!-- Navigation -->
+	<p><div>
+		<span id="back" class="btn">&#60; Back</span>&nbsp;<span id="next" class="btn">Next &#62;</span>
+	</div></p>
+	<!-- End of Navigation -->
 
 <% else: %>
         <div class="loading-container">
