@@ -22,7 +22,7 @@
   var Events = Cactus.Events = {
 
     on: function(name, callback, context) {
-      if (!eventsApi(this, 'on', name, [callback, context]) || !callback) return this;
+      if (!validateEvents(this, 'on', name, [callback, context]) || !callback) return this;
       this._events || (this._events = {});
       var events = this._events[name] || (this._events[name] = []);
       events.push({callback: callback, context: context, ctx: context || this});
@@ -30,37 +30,21 @@
     },
 
     off: function(name, callback, context) {
-      var retain, ev, events, names, i, l, j, k;
-      if (!this._events || !eventsApi(this, 'off', name, [callback, context])) return this;
+      if (!this._events || !validateEvents(this, 'off', name, [callback, context])) return this;
       if (!name && !callback && !context) {
         this._events = {};
         return this;
       }
-      names = name ? [name] : _.keys(this._events);
-      for (i = 0, l = names.length; i < l; i++) {
-        name = names[i];
-        if (events = this._events[name]) {
-          this._events[name] = retain = [];
-          if (callback || context) {
-            for (j = 0, k = events.length; j < k; j++) {
-              ev = events[j];
-              if ((callback && callback !== ev.callback && callback !== ev.callback._callback) ||
-                  (context && context !== ev.context)) {
-                retain.push(ev);
-              }
-            }
-          }
-          if (!retain.length) delete this._events[name];
-        }
-      }
-
+      this._events[name] = _.filter(this._events[name], function(event){
+        return event.callback !== callback;
+      });
       return this;
     },
 
     trigger: function(name) {
       if (!this._events) return this;
       var args = slice.call(arguments, 1);
-      if (!eventsApi(this, 'trigger', name, args)) return this;
+      if (!validateEvents(this, 'trigger', name, args)) return this;
       var events = this._events[name];
       var allEvents = this._events.all;
       if (events) triggerEvents(events, args);
@@ -69,8 +53,8 @@
     },
 
     stopListening: function(obj, name, callback) {
+      if (!this_listeningTo) return this;
       var listeningTo = this._listeningTo;
-      if (!listeningTo) return this;
       var remove = !name && !callback;
       if (!callback && typeof name === 'object') callback = this;
       if (obj) (listeningTo = {})[obj._listenId] = obj;
@@ -83,7 +67,7 @@
     }
 
   };
-  var eventsApi = function(obj, action, name, rest) {
+  var validateEvents = function(obj, action, name, rest) {
     var eventSplitter = /\s+/;
     if (!name) return true;
 
@@ -115,23 +99,6 @@
       default: while (++i < l) (ev = events[i]).callback.apply(ev.ctx, args);
     }
   };
-
-  var listenMethods = {listenTo: 'on', listenToOnce: 'once'};
-
-  _.each(listenMethods, function(implementation, method) {
-    Events[method] = function(obj, name, callback) {
-      var listeningTo = this._listeningTo || (this._listeningTo = {});
-      var id = obj._listenId || (obj._listenId = _.uniqueId('l'));
-      listeningTo[id] = obj;
-      if (!callback && typeof name === 'object') callback = this;
-      obj[implementation](name, callback, this);
-      return this;
-    };
-  });
-
-
-  // Allow the `Cactus` object to serve as a global event bus, for folks who
-  // want global "pubsub" in a convenient place.
   _.extend(Cactus, Events);
 
   // Cactus.Model
@@ -257,7 +224,6 @@
         if (success) success(model, resp, options);
         model.trigger('sync', model, resp, options);
       };
-      wrapError(this, options);
       return this.sync('read', this, options);
     },
 
@@ -288,7 +254,7 @@
     };
   });
 
-   // Cactus.Collection
+    // Cactus.Collection
   // -------------------
   var Collection = Cactus.Collection = function(models, options) {
     if(!options) options = {};
@@ -312,21 +278,39 @@
     initialize: function(){},
 
     toJSON: function(options) {
-      alert("collection.toJSON");
       return this.map(function(model){ return model.toJSON(options); });
     },
 
-    // Proxy `Cactus.sync` by default.
     sync: function() {
-      alert("collection.sync");
       return Cactus.sync.apply(this, arguments);
     },
 
-    // Add a model, or list of models to the set.
     add: function(models, options) {
     var addOpt = { merge:false };
       addOpt = _.extend(addOpt, options, addOptions);
     return this.set(models, addOpt); 
+    },
+
+    remove: function(models, options) {
+      var singular = !_.isArray(models);
+      models = singular ? [models] : _.clone(models);
+      options || (options = {});
+      var i, l, index, model;
+      for (i = 0, l = models.length; i < l; i++) {
+        model = models[i] = this.get(models[i]);
+        if (!model) continue;
+        delete this._byId[model.id];
+        delete this._byId[model.cid];
+        index = this.indexOf(model);
+        this.models.splice(index, 1);
+        this.length--;
+        if (!options.silent) {
+          options.index = index;
+          model.trigger('remove', model, this, options);
+        }
+        this._removeReference(model);
+      }
+      return singular ? models[0] : models;
     },
 
     set: function(models, options) {
@@ -342,26 +326,15 @@
       var i, l, id, model, attrs, sort;
       var at = options.at;
       var targetModel = this.model;
-      var sortable = false;
-      if(this.comparator)
-        if(at == null) 
-          if(options.sort !== false)
-              var sortable = true;
-      
-      var sortAttr;
-      if(_.isString(this.comparator)) sortAttr = this.comparator;
-      else sortAttr = null;
-
+      var sortable = this.comparator && at == null && options.sort !== false;
+      var sortAttr = _.isString(this.comparator)? this.comparator : null;
       var toAdd = [], toRemove = [], modelMap = {};
-
       var add = options.add, merge = options.merge, remove = options.remove;
       var order;
       if(!sortable && add && remove)
         order = [];
       else order = false;
 
-      // Turn bare objects into model references, and prevent invalid models
-      // from being added.
       for (i = 0, l = models.length; i < l; i++) {
         attrs = models[i];
         if (attrs instanceof Model) {
@@ -371,13 +344,9 @@
           id = attrs[targetModel.prototype.idAttribute];
         }
 
-        // If a duplicate is found, prevent it from being added and
-        // optionally merge it into the existing model.
         if (existing = this.get(id)) {
-          alert("existing");
-          if (remove) modelMap[existing.cid] = true;
-          if (merge) {
-            alert("merge true");
+          if (options.remove) modelMap[existing.cid] = true;
+          if (options.merge) {
             if(attrs === model) attrs = model.attributes;
             if (options.parse) attrs = existing.parse(attrs, options);
             existing.set(attrs, options);
@@ -386,16 +355,12 @@
           models[i] = existing;
         }
 
-        // If this is a new, valid model, push it to the `toAdd` list.
-       else  if (add) {
-
+       else  if (options.add) {
           models[i] = this._prepareModel(attrs, options);
           model = models[i];
           if (!model) continue;
           toAdd.push(model);
 
-          // Listen to added models' events, and index models for lookup by
-          // `id` and by `cid`.
           model.on('all', this._onModelEvent, this);
           this._byId[model.cid] = model;
           if (model.id != null) this._byId[model.id] = model;
@@ -406,15 +371,13 @@
         }
       }
 
-      // Remove nonexistent models if appropriate.
-      if (remove) {
+      if (options.remove) {
         for (i = 0, l = this.length; i < l; ++i) {
           if (!modelMap[(model = this.models[i]).cid]) toRemove.push(model);
         }
         if (toRemove.length) this.remove(toRemove, options);
       }
 
-      // See if sorting is needed, update `length` and splice in new models.
       if (toAdd.length || (order && order.length)) {
         this.length += toAdd.length;
         if (at != null) {
@@ -431,10 +394,8 @@
         if (sortable) sort = true;
       }
 
-      // Silently sort the collection if appropriate.
       if (sort) this.sort({silent: true});
 
-      // Unless silenced, it's time to fire all appropriate add/sort events.
       if (!options.silent) {
         for (i = 0, l = toAdd.length; i < l; i++) {
           (model = toAdd[i]).trigger('add', model, this, options);
@@ -442,7 +403,6 @@
         if (sort || (order && order.length)) this.trigger('sort', this, options);
       }
       
-      // Return the added (or merged) model (or models).
       return singular ? models[0] : models;
     },
 
@@ -460,20 +420,12 @@
       return models;
     },
 
-
-    // Get a model from the set by id.
     get: function(obj) {
-      //alert("collection.get");
       if (obj == null) return void 0;
       return this._byId[obj.id] || this._byId[obj.cid] || this._byId[obj];
     },
 
-
-    // Fetch the default set of models for this collection, resetting the
-    // collection when they arrive. If `reset: true` is passed, the response
-    // data will be passed through the `reset` method instead of `set`.
     fetch: function(options) {
-    //alert("collection.fetch");
        if(options) options = _.clone(options);
        else options = {};
       if (options.parse === void 0) options.parse = true;
@@ -487,26 +439,19 @@
         if (success) success(collection, resp, options);
         collection.trigger('sync', collection, resp, options);
       };
-      wrapError(this, options);
       return this.sync('read', this, options);
     },
 
-    // **parse** converts a response into a list of models to be added to the
-    // collection. The default implementation is just to pass it through.
     parse: function(resp, options) {
-     //alert("collection.parse");
       return resp;
     },
 
-    // Prepare a hash of attributes (or other model) to be added to this
-    // collection.
     _prepareModel: function(attrs, options) {
       if (attrs instanceof Model) { //if attrs is already a model obj, just set its collection return
         if (!attrs.collection) 
           attrs.collection = this;
         return attrs;
       }
-      //if not object, we will have to create a new model
       if(options) options = _.clone(options);
       else options = {};
       options.collection = this;
@@ -516,12 +461,7 @@
       return false;
     },
 
-    // Internal method called every time a model in the set fires an event.
-    // Sets need to update their indexes when models change ids. All other
-    // events simply proxy through. "add" and "remove" events that originate
-    // in other collections are ignored.
     _onModelEvent: function(event, model, collection, options) {
-      //alert("collection.onModelEvent");
       if ((event === 'add' || event === 'remove') && collection !== this) return;
       if (event === 'destroy') this.remove(model, options);
       if (model && event === 'change:' + model.idAttribute) {
@@ -529,6 +469,11 @@
         if (model.id != null) this._byId[model.id] = model;
       }
       this.trigger.apply(this, arguments);
+    },
+
+        _removeReference: function(model) {
+      if (this === model.collection) delete model.collection;
+      model.off('all', this._onModelEvent, this);
     }
 
   });
@@ -571,6 +516,7 @@
     this.cid = _.uniqueId('view');
     options || (options = {});
     _.extend(this, _.pick(options, viewOptions));
+    
     if (!this.el) {
         var attrs = _.extend({}, _.result(this, 'attributes'));
         if (this.id) attrs.id = _.result(this, 'id');
@@ -580,17 +526,14 @@
       } else {
         this.setElement(_.result(this, 'el'), false);
       }
+
+    this.binded = [];
     this.initialize.apply(this, arguments);
     this.delegateEvents();
   };
 
-  // Cached regex to split keys for `delegate`.
-  var delegateEventSplitter = /^(\S+)\s*(.*)$/;
-
-  // List of view options to be merged as properties.
   var viewOptions = ['model', 'collection', 'el', 'id', 'attributes', 'className', 'tagName', 'events'];
 
-  // Set up all inheritable **Cactus.View** properties and methods.
   _.extend(View.prototype, Events, {
 
     // The default `tagName` of a View's element is `"div"`.
@@ -600,6 +543,12 @@
       return this.$el.find(selector);
     },
 
+   /* bindM: function(bindModel){
+      this.binded.push(bindModel);
+    },
+
+    unbindM: function*/
+
     initialize: function(){
     },
 
@@ -607,8 +556,6 @@
       return this;
     },
 
-    // Remove this view by taking the element out of the DOM, and removing any
-    // applicable Cactus.Events listeners.
     remove: function() {
       this.$el.remove();
       this.stopListening();
@@ -624,6 +571,7 @@
     },
 
     delegateEvents: function(events) {
+      var delegateEventSplitter = /^(\S+)\s*(.*)$/;
       if (!(events || (events = _.result(this, 'events')))) return this;
       this.undelegateEvents();
       for (var key in events) {
@@ -648,10 +596,6 @@
       this.$el.off('.delegateEvents' + this.cid);
       return this;
     },
-
-    _ensureElement: function() {
-    }
-
   });
 
   // Cactus.sync
@@ -664,9 +608,6 @@ if(!options){
   options = {};
 }
 
-/* 
-Checks if we have an url
-*/
  if (!options.url) {
     if(_.result(model, 'url'))
       params.url = _.result(model, 'url'); 
@@ -679,7 +620,6 @@ Checks if we have an url
   switch(method){
   case 'create':
   case 'update':
-  case 'patch' :
   if(options.data == null && model){
   params.contentType = 'application/json';
   var reqData;
@@ -699,12 +639,6 @@ Checks if we have an url
   if(params.type !== 'GET'){
   params.processData = false;
   }
-  
-  if(params.type === 'PATCH' && noXhrPatch){
-  params.xhr = function(){
-    return new ActiveXObject("Microsoft.XMLHTTP");
-  };
-  }
 
 options.xhr = Cactus.ajax(_.extend(params, options));
 var xhr = options.xhr;
@@ -714,17 +648,13 @@ return xhr;
 
   var noXhrPatch = typeof window !== 'undefined' && !!window.ActiveXObject && !(window.XMLHttpRequest && (new XMLHttpRequest).dispatchEvent);
 
-  // Map from CRUD to HTTP for our default `Cactus.sync` implementation.
   var methodMap = {
     'create': 'POST',
     'update': 'PUT',
-    'patch':  'PATCH',
     'delete': 'DELETE',
     'read':   'GET'
   };
 
-  // Set the default implementation of `Cactus.ajax` to proxy through to `$`.
-  // Override this if you'd like to use a different library.
   Cactus.ajax = function() {
     return Cactus.$.ajax.apply(Cactus.$, arguments);
   };
@@ -764,7 +694,7 @@ return xhr;
       var router = this;
       Cactus.history.route(route, function(fragment) {
         var args = router._extractParameters(route, fragment);
-        callback && callback.apply(router, args);
+        if(callback) callback.apply(router, args);
         router.trigger.apply(router, ['route:' + name].concat(args));
         router.trigger('route', name, args);
         Cactus.history.trigger('route', router, name, args);
@@ -772,7 +702,6 @@ return xhr;
       return this;
     },
 
-    // Simple proxy to `Cactus.history` to save a fragment into the history.
     navigate: function(fragment, options) {
       Cactus.history.navigate(fragment, options);
       return this;
@@ -984,7 +913,7 @@ return xhr;
   // Create the default Cactus.history.
   Cactus.history = new History;
 
-  var extend = function(protoProps, staticProps) {
+  var extend = function(protoProps) {
     var parent = this;
     var child;
     if (protoProps && _.has(protoProps, 'constructor')) {
@@ -992,7 +921,6 @@ return xhr;
     } else {
       child = function(){ return parent.apply(this, arguments); };
     }
-    _.extend(child, parent, staticProps);
 
     var Surrogate = function(){ this.constructor = child; };
     Surrogate.prototype = parent.prototype;
@@ -1004,14 +932,5 @@ return xhr;
     return child;
   };
 
-  // Set up inheritance for the model, collection, router, view and history.
   Model.extend = Collection.extend = Router.extend = View.extend = History.extend = extend;
-  // Wrap an optional error callback with a fallback error event.
-  var wrapError = function(model, options) {
-    var error = options.error;
-    options.error = function(resp) {
-      if (error) error(model, resp, options);
-      model.trigger('error', model, resp, options);
-    };
-  };
 }).call(this);
