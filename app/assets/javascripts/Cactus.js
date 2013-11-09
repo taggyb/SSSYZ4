@@ -6,9 +6,6 @@
   // Save a reference to the global object (`window` in the browser, `exports`
   // on the server).
   var root = this;
-  // Save the previous value of the `Cactus` variable, so that it can be
-  // restored later on, if `noConflict` is used.
-  var previousCactus = root.Cactus;
 
   // Create local references to array methods we'll want to use later.
   var array = [];
@@ -33,38 +30,8 @@
   // the `$` variable.
   Cactus.$ = root.jQuery || root.Zepto || root.ender || root.$;
 
-  // Runs Cactus.js in *noConflict* mode, returning the `Cactus` variable
-  // to its previous owner. Returns a reference to this Cactus object.
-  Cactus.noConflict = function() {
-    alert("noConflict?");
-    root.Cactus = previousCactus;
-    return this;
-  };
-
-  // Turn on `emulateHTTP` to support legacy HTTP servers. Setting this option
-  // will fake `"PATCH"`, `"PUT"` and `"DELETE"` requests via the `_method` parameter and
-  // set a `X-Http-Method-Override` header.
-  Cactus.emulateHTTP = false;
-
-  // Turn on `emulateJSON` to support legacy servers that can't deal with direct
-  // `application/json` requests ... will encode the body as
-  // `application/x-www-form-urlencoded` instead and will send the model in a
-  // form param named `model`.
-  Cactus.emulateJSON = false;
-
   // Cactus.Events
   // ---------------
-
-  // A module that can be mixed in to *any object* in order to provide it with
-  // custom events. You may bind with `on` or remove with `off` callback
-  // functions to an event; `trigger`-ing an event fires all callbacks in
-  // succession.
-  //
-  //     var object = {};
-  //     _.extend(object, Cactus.Events);
-  //     object.on('expand', function(){ alert('expanded'); });
-  //     object.trigger('expand');
-  //
   var Events = Cactus.Events = {
 
     // Bind an event to a `callback` function. Passing `"all"` will bind
@@ -947,64 +914,59 @@
   // Useful when interfacing with server-side languages like **PHP** that make
   // it difficult to read the body of `PUT` requests.
   Cactus.sync = function(method, model, options) {
-    var type = methodMap[method];
 
-    // Default options, unless specified.
-    _.defaults(options || (options = {}), {
-      emulateHTTP: Cactus.emulateHTTP,
-      emulateJSON: Cactus.emulateJSON
-    });
+var type = methods[method];
+var params = { type: type, dataType: 'json'};
+if(!options){
+  options = {};
+}
 
-    // Default JSON-request options.
-    var params = {type: type, dataType: 'json'};
-
-    // Ensure that we have a URL.
-    if (!options.url) {
-      params.url = _.result(model, 'url') || urlError();
+/* 
+Checks if we have an url
+*/
+ if (!options.url) {
+    if(_.result(model, 'url'))
+      params.url = _.result(model, 'url'); 
+        else
+        params.url = function(){
+        throw new Error("Sync Error: url property not specified")
+        }
     }
+    
+  switch(method){
+  case 'create':
+  case 'update':
+  case 'patch' :
+  if(options.data == null && model){
+  params.contentType = 'application/json';
+  var reqData;
+  if(options.attrs){
+  reqData = options.attrs;
+  }
+  else if(model.ToJSON(options)){
+  reqData = model.toJSON(options);
+  }
+  params.data = JSON.stringify(reqData);
+} 
+  case 'delete':
+    params.processData = false;
+    break;
+  }
+  
+  if(params.type !== 'GET'){
+  params.processData = false;
+  }
+  
+  if(params.type === 'PATCH' && noXhrPatch){
+  params.xhr = function(){
+    return new ActiveXObject("Microsoft.XMLHTTP");
+  };
+  }
 
-    // Ensure that we have the appropriate request data.
-    if (options.data == null && model && (method === 'create' || method === 'update' || method === 'patch')) {
-      params.contentType = 'application/json';
-      params.data = JSON.stringify(options.attrs || model.toJSON(options));
-    }
-
-    // For older servers, emulate JSON by encoding the request into an HTML-form.
-    if (options.emulateJSON) {
-      params.contentType = 'application/x-www-form-urlencoded';
-      params.data = params.data ? {model: params.data} : {};
-    }
-
-    // For older servers, emulate HTTP by mimicking the HTTP method with `_method`
-    // And an `X-HTTP-Method-Override` header.
-    if (options.emulateHTTP && (type === 'PUT' || type === 'DELETE' || type === 'PATCH')) {
-      params.type = 'POST';
-      if (options.emulateJSON) params.data._method = type;
-      var beforeSend = options.beforeSend;
-      options.beforeSend = function(xhr) {
-        xhr.setRequestHeader('X-HTTP-Method-Override', type);
-        if (beforeSend) return beforeSend.apply(this, arguments);
-      };
-    }
-
-    // Don't process data on a non-GET request.
-    if (params.type !== 'GET' && !options.emulateJSON) {
-      params.processData = false;
-    }
-
-    // If we're sending a `PATCH` request, and we're in an old Internet Explorer
-    // that still has ActiveX enabled by default, override jQuery to use that
-    // for XHR instead. Remove this line when jQuery supports `PATCH` on IE8.
-    if (params.type === 'PATCH' && noXhrPatch) {
-      params.xhr = function() {
-        return new ActiveXObject("Microsoft.XMLHTTP");
-      };
-    }
-
-    // Make the request, allowing the user to override any Ajax options.
-    var xhr = options.xhr = Cactus.ajax(_.extend(params, options));
-    model.trigger('request', model, xhr, options);
-    return xhr;
+options.xhr = Cactus.ajax(_.extend(params, options));
+var xhr = options.xhr;
+model.trigger('request', model, xhr, options);
+return xhr;
   };
 
   var noXhrPatch = typeof window !== 'undefined' && !!window.ActiveXObject && !(window.XMLHttpRequest && (new XMLHttpRequest).dispatchEvent);
