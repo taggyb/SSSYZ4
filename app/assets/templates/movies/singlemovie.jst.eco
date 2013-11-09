@@ -1,23 +1,25 @@
 <div class="container">
 	<div class="container-fluid">
+
 		<div class="row-fluid">
-				<div class="row-fluid">
- 					<a class="main">movies</a> > <%= @movie.title %>
-					<br/><br/>
-				</div>
-					<a href="" class="btn bt.idrimary" id="update_movie" style="width: 100px">Update</a>
-	    			<a href="" class="btn btn-primary" id="delete_movie" style="width: 100px">Delete</a>
-    			
-				<div class="span3">
-					<img src="<%= @movie.img_url %>">
-				</div>
-				<div class="span9">
-					<h3><%= @movie.title %></h3>
-					<p><%= @movie.summary %></p>
-					<br />
-				</div>
+ 			<a class="main">movies</a> > <%= @movie.title %>
+			<br/><br/>
+		</div>
+	
+		<div class="row-fluid">
+			<div class="span3">
+				<img src="<%= @movie.img_url %>" alt="<%= @movie.title %>" title="<%= @movie.title %>" />
+				<br /><br />
+				<a class="btn" id="update_movie">Update</a>
+		    		<a class="btn btn-danger" id="delete_movie">Delete</a>
+			</div>
+			<div class="span9">
+				<h3><%= @movie.title %></h3>
+				<p><%= @movie.summary %></p>
+			</div>
 		</div>
 
+		<br /><br />
 
 		<!-- REVIEWS | REVIEWS | REVIEWS -->
 		<div class="row-fluid"><h3 class="span12">Reviews</h3></div>
