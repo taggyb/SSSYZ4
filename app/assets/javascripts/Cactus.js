@@ -682,15 +682,6 @@ model.trigger('request', model, xhr, options);
 return xhr;
   };
 
-  var noXhrPatch = typeof window !== 'undefined' && !!window.ActiveXObject && !(window.XMLHttpRequest && (new XMLHttpRequest).dispatchEvent);
-
-  var methodMap = {
-    'create': 'POST',
-    'update': 'PUT',
-    'delete': 'DELETE',
-    'read':   'GET'
-  };
-
   Cactus.ajax = function() {
     return Cactus.$.ajax.apply(Cactus.$, arguments);
   };
