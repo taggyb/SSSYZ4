@@ -676,10 +676,10 @@ if(!options){
   params.processData = false;
   }
 
-options.xhr = Cactus.ajax(_.extend(params, options));
-var xhr = options.xhr;
-model.trigger('request', model, xhr, options);
-return xhr;
+  options.xhr = Cactus.ajax(_.extend(params, options));
+  var xhr = options.xhr;
+  model.trigger('request', model, xhr, options);
+  return xhr;
   };
 
   Cactus.ajax = function() {
@@ -687,7 +687,6 @@ return xhr;
   };
 
   // Cactus.Router
-  // ---------------
   var Router = Cactus.Router = function(options) {
     options || (options = {});
     if (options.routes) this.routes = options.routes;
@@ -700,11 +699,6 @@ return xhr;
     }
     this.initialize.apply(this, arguments);
   };
-
-  var optionalParam = /\((.*?)\)/g;
-  var namedParam    = /(\(\?)?:\w+/g;
-  var splatParam    = /\*\w+/g;
-  var escapeRegExp  = /[\-{}\[\]+?.,\\\^$|#\s]/g;
 
   _.extend(Router.prototype, Events, {
 
@@ -735,12 +729,12 @@ return xhr;
     },
 
     _routeToRegExp: function(route) {
-      route = route.replace(escapeRegExp, '\\$&')
-                   .replace(optionalParam, '(?:$1)?')
-                   .replace(namedParam, function(match, optional) {
+      route = route.replace(/[\-{}\[\]+?.,\\\^$|#\s]/g, '\\$&')
+                   .replace(/\((.*?)\)/g, '(?:$1)?')
+                   .replace(/(\(\?)?:\w+/g, function(match, optional) {
                      return optional ? match : '([^\/]+)';
                    })
-                   .replace(splatParam, '(.*?)');
+                   .replace(/\*\w+/g, '(.*?)');
       return new RegExp('^' + route + '$');
     },
 
@@ -885,10 +879,6 @@ return xhr;
     // Save a fragment into the hash history, or replace the URL state if the
     // 'replace' option is passed. You are responsible for properly URL-encoding
     // the fragment in advance.
-    //
-    // The options object can contain `trigger: true` if you wish to have the
-    // route callback be fired (not usually desirable), or `replace: true`, if
-    // you wish to modify the current URL without adding an entry to the history.
     navigate: function(fragment, options) {
       if (!History.started) return false;
       if (!options || options === true) options = {trigger: !!options};
@@ -940,11 +930,11 @@ return xhr;
   // Create the default Cactus.history.
   Cactus.history = new History;
 
-  var extend = function(protoProps) {
+  var extend = function(proto) {
     var parent = this;
     var child;
-    if (protoProps && _.has(protoProps, 'constructor')) {
-      child = protoProps.constructor;
+    if (proto && _.has(proto, 'constructor')) {
+      child = proto.constructor;
     } else {
       child = function(){ return parent.apply(this, arguments); };
     }
@@ -952,7 +942,7 @@ return xhr;
     var Surrogate = function(){ this.constructor = child; };
     Surrogate.prototype = parent.prototype;
     child.prototype = new Surrogate;
-    if (protoProps) _.extend(child.prototype, protoProps);
+    if (proto) _.extend(child.prototype, proto);
 
     child.__super__ = parent.prototype;
 
