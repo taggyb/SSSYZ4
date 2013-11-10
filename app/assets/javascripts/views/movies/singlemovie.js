@@ -111,12 +111,11 @@ Cactus2.Views.SingleMovie = Cactus.View.extend({
                         },
                         success: function(e){
                                 alert("review added successfully.");
-                                current.destroyReview();
-                                routerHome.navigate("", { trigger: true });      
-                        }                  
+                                routerHome.navigate("", { trigger: true });
+				current.destroyReview();
+                        }
                 });
         },
-
 
         backToIndex: function() {
                 routerHome.navigate("", { trigger: true });

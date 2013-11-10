@@ -1,6 +1,6 @@
 Cactus2.Collections.aMovie=Cactus.Collection.extend({
 	url: function() {
-		return 'http://cs3213.herokuapp.com/movies/' + this.movie_id + '.json';
+		return" http://cs3213.herokuapp.com/movies.json?page=" + this.movie_id;
 	},
 	model: Cactus2.Models.Movie,
 

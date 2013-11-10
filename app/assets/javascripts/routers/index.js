@@ -17,16 +17,13 @@ Cactus2.Routers.Index=Cactus.Router.extend({
                 } else {
                         page = parseInt(page, 10);
                 }
-                this.movies = new Cactus2.Collections.Movies([],{
-                        url: "//cs3213.herokuapp.com/movies.json?page=" + page
-                });
+		this.movies = new Cactus2.Collections.aMovie([],{id: page});
 
                 this.movies.fetch();
                 this.movies.models;
                 var view = new Cactus2.Views.MoviesIndex({
                         el:'#wrapper',
                         collection: this.movies,
-                        mpage: page,
                         router: this
                 });
                 view.render();
@@ -55,10 +52,8 @@ Cactus2.Routers.Index=Cactus.Router.extend({
  
         editSingleMovie: function(movieId) {
                 var movie = new Cactus2.Models.Movie({id: movieId});
-                //alert("In index.js, id is " + movieId);
                 movie.fetch({
                     success: function() {
-                        //alert("testing "+movie.title);
                         var editMovieView = new Cactus2.Views.EditSingleMovie({
                             model: movie,
                             el: $('#wrapper')

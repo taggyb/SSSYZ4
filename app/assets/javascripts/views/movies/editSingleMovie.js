@@ -1,43 +1,37 @@
 Cactus2.Views.EditSingleMovie = Cactus.View.extend({
 	template: JST['movies/editSingleMovie'],
 
+	render: function() {
+		//console.log(this.model.toJSON());
+		this.$el.html(this.template(this.model.toJSON()));
+		//this.$el.html(this.template());
+		this.delegateEvents();
+		return this;
+	},
 
-    render: function() {
-        //console.log("hahaha");
-        //console.log(this.model.toJSON());
-        //console.log("hehehe");
-        this.$el.html(this.template(this.model.toJSON()));
-        //console.log("lololo");
-        //this.$el.html(this.template());
-        this.delegateEvents();
-        return this;
-    },
-
-    initialize: function() {
-        _.bindAll(this,"render");
-        //alert("id is"+this.options.mid);
-        console.log(this.model);
-        //this.collection = this.options.collection;
-        //this.id = this.options.mid;
-        //this.router = this.options.router;
-        //this.reviews = this.options.reviews;
-    },
-
-
+	initialize: function() {
+		_.bindAll(this,"render");
+		//alert("id is"+this.options.mid);
+		//console.log(this.model);
+		//this.collection = this.options.collection;
+		//this.id = this.options.mid;
+		//this.router = this.options.router;
+		//this.reviews = this.options.reviews;
+	},
 
 	events:{
-                "click #update" : "updateMovie",
+		"click #update" : "updateMovie",
                 "click #cancel" : "cancelMovie"
-    },
+	},
  
-    updateMovie: function(e) {
+	updateMovie: function(e) {
                 e.preventDefault();
                 if (typeof gon == 'undefined'){
                         alert('Please login to update this movie!');
                         return false;
                 }
                 var movie_id = this.model.get('id');
-                console.log("in update movie");
+                //console.log("in update movie");
                 $(e.target).closest('form').ajaxSubmit({
                         url: 'http://cs3213.herokuapp.com/movies/'+movie_id+'.json',
                         dataType:'json',
@@ -58,8 +52,10 @@ Cactus2.Views.EditSingleMovie = Cactus.View.extend({
                             }
                         }
                 });
-            },
-    cancelMovie: function() {
-        routerHome.navigate("", { trigger: true });
-    }
+	},
+
+	cancelMovie: function(event) {
+		var id = $(event.target).data('name');
+                routerHome.navigate("movies/" + id, { trigger: true });
+	}
 })
