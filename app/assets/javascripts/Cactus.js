@@ -758,14 +758,6 @@ if(!options){
     }
   };
 
-  // Cached regex for stripping a leading hash/slash and trailing space.
-  var routeStripper = /^[#\/]|\s+$/g;
-  // Cached regex for stripping leading and trailing slashes.
-  var rootStripper = /^\/+|\/+$/g;
-  // Cached regex for removing a trailing slash.
-  var trailingSlash = /\/$/;
-  // Cached regex for stripping urls of hash and query.
-  var pathStripper = /[?#].*$/;
   // Has the history handling already been started?
   History.started = false;
   // Set up all inheritable **Cactus.History** properties and methods.
@@ -786,13 +778,13 @@ if(!options){
       if (fragment == null) {
         if (this._hasPushState || !this._wantsHashChange || forcePushState) {
           fragment = this.location.pathname;
-          var root = this.root.replace(trailingSlash, '');
+          var root = this.root.replace(/\/$/, '');
           if (!fragment.indexOf(root)) fragment = fragment.slice(root.length);
         } else {
           fragment = this.getHash();
         }
       }
-      return fragment.replace(routeStripper, '');
+      return fragment.replace(/^[#\/]|\s+$/g, '');
     },
 
     // Start the hash change handling, returning `true` if the current URL matches
@@ -812,7 +804,7 @@ if(!options){
       var docMode           = document.documentMode;
 
       // Normalize root to always include a leading and trailing slash.
-      this.root = ('/' + this.root + '/').replace(rootStripper, '/');
+      this.root = ('/' + this.root + '/').replace(/^\/+|\/+$/g, '/');
       // Depending on whether we're using pushState or hashes, and whether
       // 'onhashchange' is supported, determine how we check the URL state.
       if (this._hasPushState) {
@@ -842,7 +834,7 @@ if(!options){
         // Or if we've started out with a hash-based route, but we're currently
         // in a browser where it could be `pushState`-based instead...
         } else if (this._hasPushState && atRoot && loc.hash) {
-          this.fragment = this.getHash().replace(routeStripper, '');
+          this.fragment = this.getHash().replace(/^[#\/]|\s+$/g, '');
           this.history.replaceState({}, document.title, this.root + this.fragment + loc.search);
         }
       }
@@ -885,7 +877,7 @@ if(!options){
 
       var url = this.root + (fragment = this.getFragment(fragment || ''));
       // Strip the fragment of the query and hash for matching.
-      fragment = fragment.replace(pathStripper, '');
+      fragment = fragment.replace(/^[#\/]|\s+$/g, '');
 
       if (this.fragment === fragment) return;
       this.fragment = fragment;
