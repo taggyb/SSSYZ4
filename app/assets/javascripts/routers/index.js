@@ -17,10 +17,9 @@ Cactus2.Routers.Index=Cactus.Router.extend({
                 } else {
                         page = parseInt(page, 10);
                 }
-		this.movies = new Cactus2.Collections.aMovie([],{id: page});
-
+		        this.movies = new Cactus2.Collections.aMovie([],{id: page});
                 this.movies.fetch();
-                this.movies.models;
+                
                 var view = new Cactus2.Views.MoviesIndex({
                         el:'#wrapper',
                         collection: this.movies,

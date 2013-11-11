@@ -18,7 +18,6 @@
  Cactus.$ = root.jQuery || root.Zepto || root.ender || root.$;
 
  // Cactus.Events
- // ---------------
  var Events = Cactus.Events = {
 
 on: function(name, callback, context) {
@@ -171,28 +170,19 @@ set: function(key, val, options) {
 	     // For each `set` attribute, update or delete the current value.
 	     for (attr in attrs) {
 		     val = attrs[attr];
-		     if (!_.isEqual(current[attr], val)) {
-			     changes.push(attr);
-		     }
-		     if (!_.isEqual(prev[attr], val)) {
-			     this.changed[attr] = val;
-		     } else {
-			     delete this.changed[attr];
-		     }
-		     if (unset) {
-			     delete current[attr];
-		     } else {
-			     current[attr] = val;
-		     }
+		     if (!_.isEqual(current[attr], val)) changes.push(attr);
+		     
+		     if (!_.isEqual(prev[attr], val)) this.changed[attr] = val;
+		     else delete this.changed[attr];
+		     
+		     if (unset)  delete current[attr];
+		     else current[attr] = val;
 	     }
 
 	     if (!silent) {
-		     if (changes.length) {
-			     this._pending = true;
-		     }
-		     for (var i = 0, l = changes.length; i < l; i++) {
+		     if (changes.length)  this._pending = true;
+		     for (var i = 0, l = changes.length; i < l; i++) 
 			     this.trigger('change:' + changes[i], this, current[changes[i]], options);
-		     }
 	     }
 
 	     if (changing) return this;
@@ -215,9 +205,7 @@ fetch: function(options) {
 	       if (options) foptions = _.clone(options);
 	       options = _.clone(foptions);
 
-	       if (options.parse === void 0) {
-		       options.parse = true;
-	       }
+	       if (options.parse === void 0) options.parse = true;
 
 	       var model = this;
 	       var success = options.success;
@@ -566,6 +554,73 @@ setElement: function(element, delegate) {
 		    return this;
 	    },
 
+prepareBindings: function() {
+                var bindings = [];
+                var events = {};
+
+                _.each(_.keys(this.bindings), function(key) {
+                        //key format: 'selector' or 'attribute selector' or 'event attribute selector'
+                        var as = key.split(' ').reverse();
+                        var binding_selector = as[0];
+                        var binding_attribute = as.length > 1 ? as[1] : null;
+                        var binding_event = as.length > 2 ? as[2] : 'change';
+                        if (_.isArray(this.bindings[key])) {
+                                var binding_property = this.bindings[key][0];
+                                var binding_formatter = this.bindings[key][1];
+                        } else {
+                                var binding_property = this.bindings[key];
+                                var binding_formatter = null;
+                        }
+
+                        if (binding_formatter && !this[binding_formatter])
+                                throw "Binding Formatter method '"+ binding_formatter +"' not found on view (did you implement it?)";
+
+                        var binding_value = binding_formatter ? this[binding_formatter].apply(this, [this.model.get(binding_property)]) : this.model.get(binding_property);
+
+                        bindings.push({property: binding_property,formatter: binding_formatter, value: binding_value, selector: binding_selector,attribute: binding_attribute});
+                        events[binding_event +' '+ binding_selector] = 'updateModel';
+                }, this);
+
+                this.delegateEvents(_.extend(events, this.events));
+
+                return bindings;
+        },
+
+        renderBindings: function() {
+                var t = this.getTemplate();
+                this.preparedBindings = this.prepareBindings();
+                _.each(this.preparedBindings, function(binding) {
+                        this.updateView(t, binding);
+                }, this);
+                this.$el.html(t.contents());
+                return this;
+        },
+
+        modelChange: function() {
+                var changedProps = _.keys(this.model.changed);
+                var changedBindings = _.filter(this.preparedBindings, function(b){ return _.include(changedProps, b.property); });
+                _.each(changedBindings, function(binding) {
+                        binding.value = binding.formatter ? this[binding.formatter].apply(this, [this.model.get(binding.property)]) : this.model.get(binding.property);
+                        this.updateView(this.$el, binding);
+                }, this);
+        },
+
+        updateView: function(el, binding) {
+                var binding_el = el.find(binding.selector);
+                if (binding.attribute === 'text' || (binding.attribute || '').length === 0) {
+                        // output is converted for html entities by default when no attr is specified in the binding
+                        binding_el.text(binding.value);
+                } else if (binding.attribute === 'html') {
+                        binding_el.html(binding.value);
+                } else {
+                        binding_el.attr(binding.attribute, binding.value);
+                }
+                binding_el.data('binding-definition', binding);
+        },
+
+
+
+
 delegateEvents: function(events) {
 			var delegateEventSplitter = /^(\S+)\s*(.*)$/;
 			if (!(events || (events = _.result(this, 'events')))) return this;
@@ -906,6 +961,5 @@ var extend = function(proto) {
 	child.__super__ = parent.prototype;
 	return child;
 };
-
 Model.extend = Collection.extend = Router.extend = View.extend = History.extend = extend;
 }).call(this);
