@@ -644,17 +644,23 @@ Cactus.ajax = function() {
 
 // Cactus.Router
 var Router = Cactus.Router = function(options) {
-	options || (options = {});
-	if (options.routes) this.routes = options.routes;
+	 if(!options){
+      options = {};
+    }
 	if(this.routes){
-		this.routes = _.result(this, 'routes');
-		var route, routes = _.keys(this.routes);
-		while ((route = routes.pop()) != null) {
+		var routes = _.keys(_.result(this, 'routes'));	
+		while (routes.length != 0) {
+			var route=routes.pop();
 			this.route(route, this.routes[route]);
 		}
 	}
 	this.initialize.apply(this, arguments);
 };
+
+var optionalParam = /\((.*?)\)/g;
+var namedParam = /(\(\?)?:\w+/g;
+var splatParam = /\*\w+/g;
+var escapeRegExp = /[\-{}\[\]+?.,\\\^$|#\s]/g;
 
 _.extend(Router.prototype, Events, {
 
@@ -662,20 +668,39 @@ initialize: function(){
 },
 
 route: function(route, name, callback) {
-if (!_.isRegExp(route)) route = this._convertReg(route);
-if (_.isFunction(name)) {
-callback = name;
-name = '';
-}
-if (!callback) callback = this[name];
+
 var router = this;
+
+if (_.isFunction(name)) {
+	callback = name;
+	name = '';
+}
+
+if (_.isRegExp(route)==false){
+	route = route.replace(escapeRegExp, '\\$&')
+				.replace(optionalParam, '(?:$1)?')
+				.replace(namedParam, function(match, optional) {
+						return optional ? match : '([^\/]+)';
+						})
+			.replace(splatParam, '(.*?)');
+	route=new RegExp('^' + route + '$');
+}
+
+if (!callback){
+	callback = this[name];
+} 
+
+
 Cactus.history.route(route, function(fragment) {
-	var args = router._extrP(route, fragment);
-	if(callback) callback.apply(router, args);
+	var args = router._extractParamaters(route, fragment);
+	if(callback){
+		 callback.apply(router, args);
+	}
 	router.trigger.apply(router, ['route:' + name].concat(args));
 	router.trigger('route', name, args);
 	Cactus.history.trigger('route', router, name, args);
 	});
+
 return this;
 },
 
@@ -684,17 +709,7 @@ navigate: function(fragment, options) {
 		  return this;
 	  },
 
-_convertReg: function(route) {
-			route = route.replace(/[\-{}\[\]+?.,\\\^$|#\s]/g, '\\$&')
-				.replace(/\((.*?)\)/g, '(?:$1)?')
-				.replace(/(\(\?)?:\w+/g, function(match, optional) {
-						return optional ? match : '([^\/]+)';
-						})
-			.replace(/\*\w+/g, '(.*?)');
-			return new RegExp('^' + route + '$');
-		},
-
-_extrP: function(route, fragment) {
+_extractParamaters: function(route, fragment) {
 			    var params = route.exec(fragment).slice(1);
 			    return _.map(params, function(param) {
 					    return param ? decodeURIComponent(param) : null;
